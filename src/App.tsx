@@ -1,4 +1,4 @@
-function App(): JSX.Element {
+const App = () => {
   return <></>;
 }
 
