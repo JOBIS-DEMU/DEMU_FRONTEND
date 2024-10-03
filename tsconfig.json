@@ -1,6 +1,7 @@
 {
   "include": ["src/components", "custom.d.ts"],
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react"
   }
 }
