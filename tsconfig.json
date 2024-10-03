@@ -1,3 +1,6 @@
 {
-  "include": ["src/components", "custom.d.ts"]
+  "include": ["src/components", "custom.d.ts"],
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
 }
