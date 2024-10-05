@@ -1,7 +1,8 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+
 import MainRouter from "./routes/mainRouter";
+import GlobalStyles from "./styles/GlobalStyle";
 
 const App = (): JSX.Element => {
   return (
@@ -15,13 +16,3 @@ const App = (): JSX.Element => {
 export default App;
 
 const Wrapper = styled.div``;
-const GlobalStyles = createGlobalStyle`
-  ${reset};
-  *{
-    font-family: 'Inter', sans-serif;
-  }
-  body{
-    background-color:#F9FAFB;
-
-  }
-`;
