@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import cautionIcon from '../assets/caution.svg';
+import React, { useState } from "react";
+import styled from "styled-components";
+import cautionIcon from "../assets/caution.svg";
 
 interface InputContainerProps {
   isValid: boolean;
@@ -9,7 +9,7 @@ interface InputContainerProps {
 const InputContainer = styled.div<InputContainerProps>`
   display: flex;
   align-items: center;
-  border: 2px solid ${({ isValid }) => (isValid ? '#707583' : '#ff0000')};
+  border: 2px solid ${({ isValid }) => (isValid ? "#707583" : "#ff0000")};
   border-radius: 14px;
   padding: 10px;
   width: 100%;
@@ -22,6 +22,9 @@ const StyledInput = styled.input`
   flex: 1;
   font-size: 16px;
   padding-left: 10px;
+  &::placeholder {
+    text-align: right;
+  }
 `;
 
 const Label = styled.label`
@@ -36,7 +39,7 @@ const ErrorMessage = styled.p<{ isValid: boolean }>`
   font-size: 12px;
   margin-top: 5px;
   font-weight: 900;
-  visibility: ${({ isValid }) => (isValid ? 'hidden' : 'visible')};
+  visibility: ${({ isValid }) => (isValid ? "hidden" : "visible")};
 `;
 
 const ErrorIcon = styled.img`
@@ -56,10 +59,10 @@ interface TextInputProps {
 
 const TextInput: React.FC<TextInputProps> = ({
   label,
-  placeholder = '',
-  value = '',
+  placeholder = "",
+  value = "",
   onChange,
-  errorMessage = '',
+  errorMessage = "",
 }) => {
   const [isValid, setIsValid] = useState(true);
 
@@ -81,7 +84,7 @@ const TextInput: React.FC<TextInputProps> = ({
         />
       </InputContainer>
       <ErrorMessage isValid={isValid}>
-        <ErrorIcon src={cautionIcon} alt='Input caution' />
+        <ErrorIcon src={cautionIcon} alt="Input caution" />
         {errorMessage}
       </ErrorMessage>
     </div>
