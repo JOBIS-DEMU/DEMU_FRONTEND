@@ -20,4 +20,8 @@ const GlobalStyles = createGlobalStyle`
   *{
     font-family: 'Inter', sans-serif;
   }
+  body{
+    background-color:#F9FAFB;
+
+  }
 `;
