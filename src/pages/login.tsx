@@ -1,15 +1,3 @@
-<<<<<<< Updated upstream
-import React from "react";
-import styled from "styled-components";
-
-const Login = (): JSX.Element => {
-  return (
-    <></>
-  );
-};
-
-export default Login;
-=======
 import styled from "styled-components";
 import React, { useState } from "react";
 import PasswordInput from "../components/PasswordInput";
@@ -111,4 +99,3 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
->>>>>>> Stashed changes
