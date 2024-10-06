@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const ButtonBase = styled.button`
   display: inline-flex;
@@ -17,13 +17,13 @@ const ButtonBase = styled.button`
   border-radius: 20px;
   padding: 10px 12px;
   cursor: pointer;
-  background-color: ${({ disabled }) => (disabled ? '#1B69FFBF' : '#1B69FF')};
+  background-color: ${({ disabled }) => (disabled ? "#1B69FFBF" : "#1B69FF")};
 
   &:active {
-    background-color: #0042C2;
+    background-color: #0042c2;
   }
 
-  color: ${({ disabled }) => (disabled ? '#FFFFFFBF' : '#FFFFFF')};
+  color: ${({ disabled }) => (disabled ? "#FFFFFFBF" : "#FFFFFF")};
   font-size: 21.25px;
   font-weight: 700;
 
@@ -46,11 +46,13 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   children,
   disabled = false,
-  onClick
+  onClick,
 }) => {
   return (
-    <ButtonBase disabled={disabled} onClick={onClick}>{children}</ButtonBase>
+    <ButtonBase disabled={disabled} onClick={onClick}>
+      {children}
+    </ButtonBase>
   );
-}
+};
 
 export default Button;
