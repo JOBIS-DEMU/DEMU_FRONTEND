@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-import Login from "../pages/login.tsx";
-import SignUp from "../pages/signUp.tsx";
+import Login from "../pages/Login";
+import SignUp from "../pages/signUp";
 import PwChange from "../pages/pwChange";
 import PwFind from "../pages/pwFind";
 
