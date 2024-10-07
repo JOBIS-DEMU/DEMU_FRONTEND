@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import Login from "../pages/Login";
-import SignUp from "../pages/signUp";
-import PwChange from "../pages/pwChange";
-import PwFind from "../pages/pwFind";
+import SignUp from "../pages/SignUp";
+import PwChange from "../pages/PwChange";
+import PwFind from "../pages/PwFind";
 
 const MainRouter = () => {
   return (
