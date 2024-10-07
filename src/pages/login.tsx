@@ -39,13 +39,7 @@ const Login = (): JSX.Element => {
           <Button children="로그인" onClick={onClick} />
         </BtnBox>
         <LoginOption>
-          <div>
-            <input type="checkbox" />
-            <CheckText>로그인 유지</CheckText>
-          </div>
-          <div>
-            <span>비밀번호 찾기 {`>`}</span>
-          </div>
+          <PsFind>비밀번호 찾기 {`>`}</PsFind>
         </LoginOption>
       </Container>
     </Wrapper>
@@ -54,15 +48,14 @@ const Login = (): JSX.Element => {
 
 export default Login;
 
-const CheckText = styled.span`
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 18.15px;
+const PsFind = styled.span`
+  padding-top: 5px;
 `;
 
 const LoginOption = styled.div`
   margin-top: 20px;
+  display: flex;
+  gap: 220px;
 `;
 
 const Logo = styled.img`
