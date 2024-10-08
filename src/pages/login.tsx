@@ -141,8 +141,7 @@ const BtnBox = styled.div`
 const Container = styled.div`
   background-color: #ffffff;
   border-radius: 50px;
-  width: 765px;
-  height: 845px;
+  padding: 62px 158px;
   display: flex;
   flex-direction: column;
   justify-content: center;
