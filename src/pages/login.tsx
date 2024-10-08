@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import { useState } from "react";
 import PasswordInput from "../components/PasswordInput";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
