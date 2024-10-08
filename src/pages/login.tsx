@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import PasswordInput from "../components/PasswordInput";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
-import LogoImg from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
-import Arrow from "../assets/arrow.svg";
+import { Arrow, LogoImg } from "../assets/index";
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();
