@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface ButtonProps {
   children: string;
-  disabled: boolean;
+  disabled?: boolean;
   onClick: () => void;
 }
 

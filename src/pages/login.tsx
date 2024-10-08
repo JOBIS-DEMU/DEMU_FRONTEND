@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import PasswordInput from "../components/PasswordInput";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 
 const Login = (): JSX.Element => {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  
   const onPassword = (value: string): boolean | any => {
     setPassword(value);
+    return true;
   };
+
   const onEmail = (value: string): boolean | any => {
     setEmail(value);
+    return true;
   };
+
   const onClick = () => {};
   return (
     <Wrapper>
@@ -28,7 +32,8 @@ const Login = (): JSX.Element => {
           />
         </TextBox>
         <PasswordBox>
-          <PasswordInput
+          <TextInput
+            isPassword
             label="비밀번호"
             onChange={onPassword}
             value={password}
@@ -36,7 +41,7 @@ const Login = (): JSX.Element => {
           />
         </PasswordBox>
         <BtnBox>
-          <Button children="로그인" onClick={onClick} />
+          <Button onClick={onClick}>로그인</Button>
         </BtnBox>
         <LoginOption>
           <PsFind>비밀번호 찾기 {`>`}</PsFind>
@@ -56,6 +61,7 @@ const LoginOption = styled.div`
   margin-top: 20px;
   display: flex;
   gap: 220px;
+  cursor: pointer;
 `;
 
 const Logo = styled.img`
