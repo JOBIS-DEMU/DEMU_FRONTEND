@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import visibleIcon from "../assets/visible.svg";
+import invisibleIcon from "../assets/invisible.svg";
 import cautionIcon from "../assets/caution.svg";
 
 interface InputContainerProps {
@@ -27,6 +29,13 @@ const StyledInput = styled.input`
   }
 `;
 
+const ToggleIcon = styled.div`
+  cursor: pointer;
+  margin-left: 20px;
+  color: #a0a3b1;
+  scale: 0.8;
+`;
+
 const Label = styled.label`
   display: block;
   margin-bottom: 8px;
@@ -52,19 +61,22 @@ const ErrorIcon = styled.img`
 interface TextInputProps {
   label: string;
   placeholder?: string;
-  value?: string;
+  value: string;
   onChange: (value: string) => boolean;
   errorMessage?: string;
+  isPassword?: boolean;
 }
 
-const TextInput: React.FC<TextInputProps> = ({
+const TextInput = ({
   label,
   placeholder = "",
-  value = "",
   onChange,
+  value,
   errorMessage = "",
-}) => {
+  isPassword = false,
+}: TextInputProps) => {
   const [isValid, setIsValid] = useState(true);
+  const [isVisible, setPasswordVisible] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -72,16 +84,28 @@ const TextInput: React.FC<TextInputProps> = ({
     setIsValid(valid);
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!isVisible);
+  };
+
   return (
     <div>
       <Label>{label}</Label>
       <InputContainer isValid={isValid}>
         <StyledInput
-          type="text"
+          type={isPassword && !isVisible ? "password" : "text"}
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
         />
+        {isPassword && (
+          <ToggleIcon onClick={togglePasswordVisibility}>
+            <img
+              src={!isVisible ? invisibleIcon : visibleIcon}
+              alt="Toggle password visibility"
+            />
+          </ToggleIcon>
+        )}
       </InputContainer>
       <ErrorMessage isValid={isValid}>
         <ErrorIcon src={cautionIcon} alt="Input caution" />
