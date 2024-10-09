@@ -1,51 +1,42 @@
 import styled from "styled-components";
 import React, { useState } from "react";
+import PasswordInput from "../components/PasswordInput";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 
 const Login = (): JSX.Element => {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  
-  const onEmail = (value: string): boolean | any => {
-    setEmail(value);
-    return !value.includes(' ');
-  };
-
   const onPassword = (value: string): boolean | any => {
     setPassword(value);
-    return !value.includes(' ') && value.length >= 8 || value.length == 0;
   };
-
+  const onEmail = (value: string): boolean | any => {
+    setEmail(value);
+  };
   const onClick = () => {};
   return (
     <Wrapper>
       <Container>
         <Logo src="src\assets\logo.svg" />
         <TextBox>
-          <TextInput
+          <TextInputzz
             label="이메일"
             onChange={onEmail}
             value={email}
             errorMessage="유효하지 않은 이메일 입니다"
-            hint="@dsm.hs.kr"
+            placeholder="@dsm.hs.kr"
           />
         </TextBox>
         <PasswordBox>
-          <TextInput
-            isPassword
+          <PasswordInput
             label="비밀번호"
             onChange={onPassword}
             value={password}
-            placeholder="8자 이상의 비밀번호를 입력해주세요"
             errorMessage="비밀번호가 올바르지 않습니다."
           />
         </PasswordBox>
         <BtnBox>
-          <Button
-            disabled={password.length == 0 || email.length == 0}
-            onClick={onClick}
-          >로그인</Button>
+          <Button children="로그인" onClick={onClick} />
         </BtnBox>
         <LoginOption>
           <PsFind>비밀번호 찾기 {`>`}</PsFind>
@@ -65,7 +56,6 @@ const LoginOption = styled.div`
   margin-top: 20px;
   display: flex;
   gap: 220px;
-  cursor: pointer;
 `;
 
 const Logo = styled.img`
