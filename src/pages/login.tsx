@@ -7,14 +7,14 @@ const Login = (): JSX.Element => {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   
-  const onPassword = (value: string): boolean | any => {
-    setPassword(value);
-    return true;
-  };
-
   const onEmail = (value: string): boolean | any => {
     setEmail(value);
-    return true;
+    return !value.includes(' ');
+  };
+
+  const onPassword = (value: string): boolean | any => {
+    setPassword(value);
+    return !value.includes(' ') && value.length >= 8 || value.length == 0;
   };
 
   const onClick = () => {};
@@ -28,7 +28,7 @@ const Login = (): JSX.Element => {
             onChange={onEmail}
             value={email}
             errorMessage="유효하지 않은 이메일 입니다"
-            placeholder="@dsm.hs.kr"
+            hint="@dsm.hs.kr"
           />
         </TextBox>
         <PasswordBox>
@@ -37,11 +37,15 @@ const Login = (): JSX.Element => {
             label="비밀번호"
             onChange={onPassword}
             value={password}
+            placeholder="8자 이상의 비밀번호를 입력해주세요"
             errorMessage="비밀번호가 올바르지 않습니다."
           />
         </PasswordBox>
         <BtnBox>
-          <Button onClick={onClick}>로그인</Button>
+          <Button
+            disabled={password.length == 0 || email.length == 0}
+            onClick={onClick}
+          >로그인</Button>
         </BtnBox>
         <LoginOption>
           <PsFind>비밀번호 찾기 {`>`}</PsFind>

@@ -28,18 +28,20 @@ const ButtonBase = styled.button`
   width: 100%;
   min-height: 45px;
   max-height: 80px;
-  height: 100px;
+  height: 100%;
   border: none;
   border-radius: 20px;
   padding: 10px 12px;
   cursor: pointer;
-  background-color: ${({ disabled }) => (disabled ? "#1B69FFBF" : "#1B69FF")};
+  background-color: #1B69FF;
+  opacity: ${({ disabled }) => (disabled ? "0.75" : "1")};
 
   &:active {
-    background-color: #0042c2;
+    background-color: ${({ disabled }) => (disabled ? "#1B69FF" : "#0042C2")};
+    opacity: 0.75;
   }
 
-  color: ${({ disabled }) => (disabled ? "#FFFFFFBF" : "#FFFFFF")};
+  color: white;
   font-size: 21.25px;
   font-weight: 700;
 
