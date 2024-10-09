@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { Arrow, LogoImg } from "../assets/index";
 
-const Login = (): JSX.Element => {
+export const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -69,8 +69,6 @@ const Login = (): JSX.Element => {
     </Wrapper>
   );
 };
-
-export default Login;
 
 const GoSignUp = styled.a`
   color: #1b69ff;
@@ -138,7 +136,7 @@ const BtnBox = styled.div`
   height: 81px;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   background-color: #ffffff;
   border-radius: 50px;
   padding: 62px 158px;
@@ -148,7 +146,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   height: 100dvh;
