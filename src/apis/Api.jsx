@@ -1,6 +1,9 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 
-const baseUrl = "http://3.37.219.136:8080";
+dotenv.config();
+
+const baseUrl = process.env.BASE_URL;
 
 const api = axios.create({
 	baseURL : baseUrl
