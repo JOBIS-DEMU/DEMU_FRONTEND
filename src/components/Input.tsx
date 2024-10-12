@@ -4,7 +4,7 @@ import visibleIcon from "../assets/visible.svg";
 import invisibleIcon from "../assets/invisible.svg";
 import cautionIcon from "../assets/caution.svg";
 
-interface TextInputProps {
+interface InputProps {
   label: string;
   placeholder?: string;
   hint?: string;
@@ -14,7 +14,7 @@ interface TextInputProps {
   isPassword?: boolean;
 }
 
-const TextInput = ({
+const Input = ({
   label,
   placeholder = "",
   hint,
@@ -22,7 +22,7 @@ const TextInput = ({
   value,
   errorMessage = "",
   isPassword = false,
-}: TextInputProps) => {
+}: InputProps) => {
   const [isValid, setIsValid] = useState(true);
   const [isVisible, setPasswordVisible] = useState(false);
 
@@ -126,4 +126,4 @@ const Hint = styled.span`
   right: 10px;
 `;
 
-export default TextInput;
+export default Input;
