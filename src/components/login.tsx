@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import PasswordInput from "../components/PasswordInput";
-import TextInput from "../components/TextInput";
+import Input from "../components/Input";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { Arrow, LogoImg } from "../assets/index";
@@ -30,15 +29,16 @@ const Login = (): JSX.Element => {
           <Logo src={LogoImg} />
         </LogoBox>
         <InputContainer>
-          <TextInput
+          <Input
             label="이메일"
             onChange={onEmail}
             value={email}
             errorMessage="유효하지 않은 이메일 입니다"
-            placeholder="@dsm.hs.kr"
+            hint="@dsm.hs.kr"
           />
 
-          <PasswordInput
+          <Input
+            isPassword
             label="비밀번호"
             onChange={onPassword}
             value={password}

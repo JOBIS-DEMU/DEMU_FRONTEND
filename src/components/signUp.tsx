@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { LogoImg } from "../assets/index";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import TextInput from "../components/TextInput";
-import PasswordInput from "../components/PasswordInput";
+import Input from "../components/Input";
 import Button from "../components/Button";
 
 const SignUp = (): JSX.Element => {
@@ -51,28 +50,30 @@ const SignUp = (): JSX.Element => {
           <Logo src={LogoImg} />
         </LogoBox>
         <InputContainer>
-          <TextInput
+          <Input
             label="이메일"
             onChange={onEmail}
             value={email}
             errorMessage="유효하지 않은 이메일 입니다"
-            placeholder="@dsm.hs.kr"
+            hint="@dsm.hs.kr"
           />
-          <TextInput
+          <Input
             label="닉네임"
             onChange={onNickName}
             value={nickName}
             errorMessage="이미 있는 닉네임 입니다"
             placeholder="20자 이하의 닉네임을 입력해주세요"
           />
-          <PasswordInput
+          <Input
             label="비밀번호"
+            isPassword
             onChange={onPassword}
             value={password}
             errorMessage="비밀번호가 올바르지 않습니다."
           />
-          <PasswordInput
+          <Input
             label="비밀번호 확인"
+            isPassword
             onChange={onChkPassword}
             value={chkPassword}
             errorMessage="비밀번호가 일치 하지 않습니다."
