@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Arrow, LogoImg } from "../assets/index";
+import { LogoImg } from "../assets/index";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import TextInput from "../components/TextInput";
