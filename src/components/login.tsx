@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import React, { useState } from "react";
-import PasswordInput from "../components/PasswordInput";
-import TextInput from "../components/TextInput";
+import { useState } from "react";
+import Input from "../components/Input";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { Arrow, LogoImg } from "../assets/index";
@@ -10,41 +9,57 @@ const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const onPassword = (value: string): boolean | any => {
+  const onPassword = (value: string): boolean => {
     setPassword(value);
+    return true;
   };
-  const onEmail = (value: string): boolean | any => {
+  const onEmail = (value: string): boolean => {
     setEmail(value);
+    if (value.indexOf("@dsm.hs.kr") != -1) {
+      return true;
+    } else {
+      return false;
+    }
   };
   const onClick = () => {};
   return (
     <Wrapper>
-      <Container>
-        <Logo src="src\assets\logo.svg" />
-        <TextBox>
-          <TextInputzz
+      <LogoContainer>
+        <LogoBox>
+          <Logo src={LogoImg} />
+        </LogoBox>
+        <InputContainer>
+          <Input
             label="이메일"
             onChange={onEmail}
             value={email}
             errorMessage="유효하지 않은 이메일 입니다"
-            placeholder="@dsm.hs.kr"
+            hint="@dsm.hs.kr"
           />
-        </TextBox>
-        <PasswordBox>
-          <PasswordInput
+
+          <Input
+            isPassword
             label="비밀번호"
             onChange={onPassword}
             value={password}
             errorMessage="비밀번호가 올바르지 않습니다."
           />
-        </PasswordBox>
-        <BtnBox>
-          <Button children="로그인" onClick={onClick} />
-        </BtnBox>
+        </InputContainer>
+      </LogoContainer>
+      <Footer>
         <LoginOption>
-          <PsFind>비밀번호 찾기 {`>`}</PsFind>
+          <BtnBox>
+            <Button children="로그인" onClick={onClick} />
+          </BtnBox>
+          <PsFind onClick={() => navigate("/pwFind")}>
+            비밀번호 찾기 <img src={Arrow} />
+          </PsFind>
         </LoginOption>
-      </Container>
+        <NoAccount>
+          계정이 없다면?
+          <GoSignUp onClick={() => navigate("/signUp")}>회원가입 하기</GoSignUp>
+        </NoAccount>
+      </Footer>
     </Wrapper>
   );
 };
@@ -60,13 +75,19 @@ const GoSignUp = styled.a`
 
 const NoAccount = styled.div`
   display: flex;
-  gap: 220px;
+  justify-content: center;
 `;
 
-const Field = styled.div`
+const LogoBox = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 300px;
+  justify-content: center;
+`;
+
+const PsFind = styled.div`
+  display: flex;
+  justify-content: end;
+  gap: 7px;
+  cursor: pointer;
 `;
 
 const Footer = styled.div`
@@ -105,19 +126,13 @@ const BtnBox = styled.div`
   height: 81px;
 `;
 
-const Container = styled.div`
-  background-color: #ffffff;
+const Wrapper = styled.div`
   border-radius: 50px;
   padding: 62px 158px;
+  background-color: #ffffff;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 100dvh;
-  align-items: center;
+  gap: 183px;
 `;
