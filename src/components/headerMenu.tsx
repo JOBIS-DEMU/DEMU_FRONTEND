@@ -4,15 +4,7 @@ import styled from "styled-components";
 
 const HeaderMenu = () => {
   const navigate = useNavigate();
-  const onHome = () => {
-    navigate("/home");
-  };
-  const onMyPage = () => {
-    navigate("/myPage");
-  };
-  const onSwap = () => {
-    navigate("/");
-  };
+
   return (
     <Wrapper>
       <Container>
@@ -23,11 +15,11 @@ const HeaderMenu = () => {
         </InputBox>
       </Container>
       <Option>
-        <Selection onClick={onHome}>홈</Selection>
+        <Selection onClick={() => navigate("/home")}>홈</Selection>
         <img src={LineOption} />
-        <Selection onClick={onMyPage}>마이페이지</Selection>
+        <Selection onClick={() => navigate("/myPage")}>마이페이지</Selection>
         <img src={LineOption} />
-        <Selection onClick={onSwap}>로그인</Selection>
+        <Selection onClick={() => navigate("/")}>로그인</Selection>
       </Option>
     </Wrapper>
   );
