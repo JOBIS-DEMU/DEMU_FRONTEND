@@ -1,18 +1,18 @@
 enum Major {
-  BACKEND,
-  FRONTEND,
-  FULL_STACK,
-  IOS,
-  AOS,
-  DEVOPS,
-  EMBEDDED,
-  FLUTTER,
-  AI,
-  SECURITY,
-  GAME,
-  DESIGN,
-  ETC,
-  NONE
+  BACKEND = "backend",
+  FRONTEND = "frontend",
+  FULL_STACK = "full_stack",
+  IOS = "ios",
+  AOS = "aos",
+  DEVOPS = "devops",
+  EMBEDDED = "embedded",
+  FLUTTER = "flutter",
+  AI = "ai",
+  SECURITY = "security",
+  GAME = "game",
+  DESIGN = "design",
+  ETC = "etc",
+  NONE = "none"
 };
 
 export default Major;

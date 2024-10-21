@@ -1,4 +1,4 @@
-import Tier from "src/types/Tier";
+import Grade from "src/types/grade";
 import Major from "src/types/major";
 
 class UserModel {
@@ -6,15 +6,15 @@ class UserModel {
   name: String;
   description: String;
   point: number;
-  tier: Tier;
+  tier: Grade;
   major: Major;
 
-  constructor(email: String, name: String, description?: String, point?: number, tier?: Tier, major?: Major) {
+  constructor(email: String, name: String, description?: String, point?: number, tier?: Grade, major?: Major) {
     this.email = email;
     this.name = name;
     this.description = description ?? "";
     this.point = point ?? 0;
-    this.tier = tier ?? Tier.BRONZE;
+    this.tier = tier ?? Grade.BRONZE;
     this.major = major ?? Major.NONE;
   }
 }
