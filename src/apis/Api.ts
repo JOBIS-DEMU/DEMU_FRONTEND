@@ -7,6 +7,18 @@ const api = axios.create({
 	baseURL: baseUrl
 });
 
+const setTokens = (accessToken: string, refreshToken: string) => {
+	localStorage.setItem('accessToken', accessToken);
+	localStorage.setItem('refreshToken', refreshToken);
+	api.defaults.headers.common['Authorization'] = accessToken;
+};
+
+const removeTokens = () => {
+	localStorage.removeItem('accessToken');
+	localStorage.removeItem('refreshToken');
+	delete api.defaults.headers.common['Authorization'];
+};
+
 api.interceptors.request.use(
 	(config: InternalAxiosRequestConfig) => {
 		const accessToken = localStorage.getItem('accessToken');
@@ -33,8 +45,7 @@ api.interceptors.response.use(
 				api.defaults.headers.common['Authorization'] = data.accessToken;
 				return api(originalRequest);
 			} catch (refreshError) {
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
+				removeTokens();
 				useNavigate()('/');
 				return Promise.reject(refreshError);
 			}
@@ -42,5 +53,7 @@ api.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
+export { setTokens, removeTokens };
 
 export default api;
