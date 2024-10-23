@@ -1,21 +1,40 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BaseProfile, PreviewImg } from "../../assets";
 import styled from "styled-components";
+import { useState } from "react";
 
 const PopularTab = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const popularPost = [PreviewImg, PreviewImg];
+  const [myBlog, setMyBlog] = useState(false);
+
   return (
     <Wrapper>
       <Title>대뮤니티, 이 달의 인기글🔥</Title>
       <Option>
         <OptionBox>
-          <Selection color={pathname === "/home" ? "#1B69FF" : "#707583"}>
+          <Selection
+            onClick={() => {
+              navigate("/home");
+              setMyBlog(false);
+            }}
+            color={
+              pathname === "/home" && myBlog === false ? "#1B69FF" : "#707583"
+            }
+          >
             홈
           </Selection>
-          <Selection color="#707583">내 전공 블로그 보기</Selection>
+          <Selection
+            onClick={() => setMyBlog(!myBlog)}
+            color={myBlog ? "#1B69FF" : "#707583"}
+          >
+            내 전공 블로그 보기
+          </Selection>
         </OptionBox>
-        <Selection color="#707583">글쓰기</Selection>
+        <Selection onClick={() => navigate("/writePage")} color="#707583">
+          글쓰기
+        </Selection>
       </Option>
       <Rank>
         {popularPost.map(post => (
@@ -100,6 +119,5 @@ const Title = styled.span`
 const Option = styled.div`
   display: flex;
   gap: 1148px;
-
-  padding-left: 242px;
+  padding-left: 240px;
 `;
