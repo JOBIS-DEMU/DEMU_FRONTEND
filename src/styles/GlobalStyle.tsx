@@ -9,7 +9,8 @@ const GlobalStyles = createGlobalStyle`
   }
   body{
     background-color:#F9FAFB;
-
+    font-family: 'Inter', sans-serif;
+    
   }
 `;
 
