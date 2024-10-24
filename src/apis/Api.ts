@@ -1,36 +1,35 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
+import { Cookies } from 'react-cookie';
 
 const baseUrl = import.meta.env.VITE_SERVER_BASE_URL;
+const cookies = new Cookies();
 
-const api = axios.create({
+const api: AxiosInstance = axios.create({
 	baseURL: baseUrl
 });
 
-const setTokens = (accessToken: string, refreshToken: string) => {
-	localStorage.setItem('accessToken', accessToken);
-	localStorage.setItem('refreshToken', refreshToken);
-	api.defaults.headers.common['Authorization'] = accessToken;
+const saveToken = (
+	data: {
+		access_token: string;
+		refresh_token: string;
+		access_expires_at: string;
+		refresh_expires_at: string
+	}
+) => {
+	cookies.set('access_token', data.access_token, { path: '/', expires: new Date(data.access_expires_at) });
+	cookies.set('refresh_token', data.refresh_token, { path: '/', expires: new Date(data.refresh_expires_at) });
+	api.defaults.headers.common['Authorization'] = data.access_token;
 };
 
-const removeTokens = () => {
-	localStorage.removeItem('accessToken');
-	localStorage.removeItem('refreshToken');
+const removeToken = () => {
+	cookies.remove('access_token', { path: '/' });
+	cookies.remove('refresh_token', { path: '/' });
 	delete api.defaults.headers.common['Authorization'];
 };
 
-api.interceptors.request.use(
-	(config: InternalAxiosRequestConfig) => {
-		const accessToken = localStorage.getItem('accessToken');
-		if (accessToken) {
-			config.headers['Authorization'] = accessToken;
-		}
-		return config;
-	},
-	(error: AxiosError) => {
-		return Promise.reject(error);
-	}
-);
+const getRefreshToken = () => {
+	return cookies.get('refresh_token');
+};
 
 api.interceptors.response.use(
 	(response) => response,
@@ -39,14 +38,12 @@ api.interceptors.response.use(
 		if (error.response?.status === 401 && !originalRequest._retry) {
 			originalRequest._retry = true;
 			try {
-				const refreshToken = localStorage.getItem('refreshToken');
-				const { data } = await axios.post('/public/token', { token: refreshToken });
-				localStorage.setItem('accessToken', data.accessToken);
-				api.defaults.headers.common['Authorization'] = data.accessToken;
+				const refreshToken = getRefreshToken();
+				const { data } = await api.post('/public/token', { token: refreshToken });
+				saveToken(data);
 				return api(originalRequest);
 			} catch (refreshError) {
-				removeTokens();
-				useNavigate()('/');
+				removeToken();
 				return Promise.reject(refreshError);
 			}
 		}
@@ -54,6 +51,6 @@ api.interceptors.response.use(
 	}
 );
 
-export { setTokens, removeTokens };
+export { saveToken, removeToken };
 
 export default api;
