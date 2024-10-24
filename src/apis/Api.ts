@@ -39,7 +39,7 @@ api.interceptors.response.use(
 			originalRequest._retry = true;
 			try {
 				const refreshToken = getRefreshToken();
-				const { data } = await api.post('/public/token', { token: refreshToken });
+				const { data } = await api.post('/public/token/reissue', { token: refreshToken });
 				saveToken(data);
 				return api(originalRequest);
 			} catch (refreshError) {
