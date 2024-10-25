@@ -1,4 +1,4 @@
-import { HeaderMenu, PopularTab } from "../components/homePage";
+import { HeaderMenu, MainTab, PopularTab } from "../components/homePage";
 import styled from "styled-components";
 
 const Home = () => {
@@ -6,6 +6,7 @@ const Home = () => {
     <Wrapper>
       <HeaderMenu />
       <PopularTab />
+      <MainTab />
     </Wrapper>
   );
 };
