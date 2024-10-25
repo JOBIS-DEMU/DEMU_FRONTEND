@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const MainTab = () => {
+const FilterTab = () => {
   const [selectIndex, setSelectIndex] = useState<number | null>(null);
 
   const Option = [
@@ -117,4 +117,4 @@ const Select = styled.span`
   color: ${(proops) => proops.color};
 `;
 
-export default MainTab;
+export default FilterTab;
