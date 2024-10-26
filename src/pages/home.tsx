@@ -1,4 +1,10 @@
-import { HeaderMenu, MainTab, PopularTab } from "../components/homePage";
+import {
+  FilterTab,
+  HeaderMenu,
+  LoginTab,
+  PopularTab,
+  Post,
+} from "../components/homePage";
 import styled from "styled-components";
 
 const Home = () => {
@@ -6,7 +12,11 @@ const Home = () => {
     <Wrapper>
       <HeaderMenu />
       <PopularTab />
-      <MainTab />
+      <FilterTab />
+      <Main>
+        <Post />
+        <LoginTab />
+      </Main>
     </Wrapper>
   );
 };
@@ -16,4 +26,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 37px;
+`;
+
+const Main = styled.div`
+  display: flex;
 `;
