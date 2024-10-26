@@ -1,3 +1,4 @@
+import { BaseProfile } from "../assets";
 import { Diamond } from "../assets/rankIcons";
 import {
   FilterTab,
@@ -18,7 +19,13 @@ const HomePage = () => {
         <FilterTab />
         <Main>
           <Post />
-          <LoginTab name="정승우" major="frontend" id={123123} rank={Diamond} />
+          <LoginTab
+            name="정승우"
+            major="frontend"
+            id={123123}
+            rank={Diamond}
+            profile={BaseProfile}
+          />
         </Main>
         <PageSwitch />
       </Field>

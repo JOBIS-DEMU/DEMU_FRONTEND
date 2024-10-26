@@ -6,12 +6,13 @@ interface loginTabProps {
   major: string;
   id: number;
   rank: string;
+  profile: string;
 }
 
-const LoginTab = ({ name, major, id, rank }: loginTabProps) => {
+const LoginTab = ({ name, major, id, rank, profile }: loginTabProps) => {
   return (
     <Wrapper>
-      <Profile src={BaseProfile} />
+      <Profile src={profile} />
       <Info>
         <Name>{name}</Name>
         <Major>{major}</Major>
