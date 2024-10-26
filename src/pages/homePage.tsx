@@ -1,3 +1,4 @@
+import { Diamond } from "../assets/rankIcons";
 import {
   FilterTab,
   HeaderMenu,
@@ -8,7 +9,7 @@ import {
 } from "../components/homePage";
 import styled from "styled-components";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <Wrapper>
       <Field>
@@ -17,7 +18,7 @@ const Home = () => {
         <FilterTab />
         <Main>
           <Post />
-          <LoginTab />
+          <LoginTab name="정승우" major="frontend" id={123123} rank={Diamond} />
         </Main>
         <PageSwitch />
       </Field>
@@ -26,7 +27,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
 
 const Footer = styled.div`
   width: 100%;

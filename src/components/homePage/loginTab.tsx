@@ -1,18 +1,24 @@
-import { Bronze } from "../../assets/rankIcons";
 import { BaseProfile } from "../../assets";
 import styled from "styled-components";
 
-const LoginTab = () => {
+interface loginTabProps {
+  name: string;
+  major: string;
+  id: number;
+  rank: string;
+}
+
+const LoginTab = ({ name, major, id, rank }: loginTabProps) => {
   return (
     <Wrapper>
       <Profile src={BaseProfile} />
       <Info>
-        <Name>User</Name>
-        <Major>frontend</Major>
+        <Name>{name}</Name>
+        <Major>{major}</Major>
       </Info>
       <Footer>
-        <Id>123456789</Id>
-        <Rank src={Bronze} />
+        <Id>{id}</Id>
+        <Rank src={rank} />
       </Footer>
     </Wrapper>
   );
