@@ -8,7 +8,7 @@ const Post = () => {
       name: "유재민",
       rank: Silver,
       profile: BaseProfile,
-      title: "내가 17살 때 부터 백엔드를 할 수 있었던 이유 17가지",
+      title: "ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ",
       heartCnt: 3,
       commentCnt: 3,
       preview: PreviewImg,
@@ -20,6 +20,15 @@ const Post = () => {
       title: "내가 프론트인 이유",
       heartCnt: 10,
       commentCnt: 10,
+    },
+    {
+      name: "홍길동",
+      rank: Diamond,
+      profile: BaseProfile,
+      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
+      heartCnt: 300,
+      commentCnt: 3923,
+      preview: PreviewImg,
     },
     {
       name: "홍길동",
@@ -85,17 +94,17 @@ export default Post;
 const ContextBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid #707583;
   padding-top: 6px;
   padding-bottom: 20px;
   cursor: pointer;
+  gap: 67px;
 `;
 const PostBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
   gap: 18px;
+  width: 100%;
 `;
 
 const Preview = styled.img`
@@ -114,10 +123,10 @@ const IconBox = styled.div`
 
 const TitleBox = styled.div`
   display: flex;
-  width: fit-content;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 150px;
 `;
 
 const Profile = styled.img`
@@ -128,6 +137,9 @@ const Profile = styled.img`
 const Title = styled.span`
   font-size: 32px;
   font-weight: 600;
+  @media (min-height: 32px) {
+    margin-top: 20px;
+  }
 `;
 
 const Rank = styled.img`
