@@ -2,6 +2,7 @@ import {
   FilterTab,
   HeaderMenu,
   LoginTab,
+  PageSwitch,
   PopularTab,
   Post,
 } from "../components/homePage";
@@ -17,6 +18,7 @@ const Home = () => {
         <Post />
         <LoginTab />
       </Main>
+      <PageSwitch />
     </Wrapper>
   );
 };
