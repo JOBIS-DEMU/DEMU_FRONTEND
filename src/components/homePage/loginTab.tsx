@@ -35,7 +35,6 @@ const SelfInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   background-color: #ffffff;
   color: #1f262c;
   padding: 36px 74px;
@@ -49,7 +48,6 @@ const SelfInfo = styled.div`
 const Footer = styled.div`
   display: flex;
   flex-direction: column;
-
   align-items: center;
 `;
 
@@ -57,7 +55,6 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
 `;
 
 const Wrapper = styled.div`
