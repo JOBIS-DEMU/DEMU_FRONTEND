@@ -1,16 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login, SignUp, PwFind, Home, MyPage, WritePage } from "../pages/index";
+import {
+  LoginPage,
+  SignUp,
+  PwFind,
+  HomePage,
+  MyPage,
+  WritePage,
+  MyBlogPage,
+} from "../pages/index";
 
 const MainRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/pwFind" element={<PwFind />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/writePage" element={<WritePage />} />
+        <Route path="/myBlog" element={<MyBlogPage />} />
       </Routes>
     </BrowserRouter>
   );
