@@ -1,15 +1,14 @@
-import { BaseProfile } from "../../assets";
 import styled from "styled-components";
 
 interface loginTabProps {
   name: string;
   major: string;
-  id: number;
+  info: string;
   rank: string;
   profile: string;
 }
 
-const LoginTab = ({ name, major, id, rank, profile }: loginTabProps) => {
+const LoginTab = ({ name, major, info, rank, profile }: loginTabProps) => {
   return (
     <Wrapper>
       <Profile src={profile} />
@@ -18,7 +17,7 @@ const LoginTab = ({ name, major, id, rank, profile }: loginTabProps) => {
         <Major>{major}</Major>
       </Info>
       <Footer>
-        <Id>{id}</Id>
+        <SelfInfo>{info}</SelfInfo>
         <Rank src={rank} />
       </Footer>
     </Wrapper>
@@ -32,7 +31,7 @@ const Rank = styled.img`
   height: 226px;
 `;
 
-const Id = styled.div`
+const SelfInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -22,7 +22,7 @@ const HomePage = () => {
           <LoginTab
             name="정승우"
             major="frontend"
-            id={123123}
+            info="살려주세요"
             rank={Diamond}
             profile={BaseProfile}
           />
