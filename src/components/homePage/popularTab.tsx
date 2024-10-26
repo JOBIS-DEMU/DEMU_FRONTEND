@@ -19,14 +19,12 @@ const PopularTab = () => {
               navigate("/home");
               setMyBlog(false);
             }}
-            color={
-              pathname === "/home" && myBlog === false ? "#1B69FF" : "#707583"
-            }
+            color={pathname === "/home" ? "#1B69FF" : "#707583"}
           >
             홈
           </Selection>
           <Selection
-            onClick={() => setMyBlog(!myBlog)}
+            onClick={() => navigate("/myBlog")}
             color={myBlog ? "#1B69FF" : "#707583"}
           >
             내 전공 블로그 보기
