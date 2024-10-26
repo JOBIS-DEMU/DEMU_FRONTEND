@@ -7,7 +7,7 @@ const PopularTab = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const popularPost = [PreviewImg, PreviewImg];
-  const [myBlog, setMyBlog] = useState(false);
+  const [myBlog, setMyBlog] = useState<boolean>(false);
 
   return (
     <Wrapper>
