@@ -36,16 +36,16 @@ const PopularTab = () => {
           글쓰기
         </Selection>
       </Option>
-      <Rank>
-        {popularPost.map(post => (
-          <Candidate image={post}>
+      <Ranking>
+        {popularPost.map((post, index) => (
+          <Candidate key={index} image={post}>
             <NameBox>
               <Profile src={BaseProfile} />
               <NickName>유재민</NickName>
             </NameBox>
           </Candidate>
         ))}
-      </Rank>
+      </Ranking>
     </Wrapper>
   );
 };
@@ -73,7 +73,7 @@ const NickName = styled.span`
 `;
 
 const Candidate = styled.div<{ image: string }>`
-  background-image: url(${props => props.image});
+  background-image: url(${(props) => props.image});
   width: 865px;
   height: 346px;
   opacity: 0.7;
@@ -85,7 +85,7 @@ const Candidate = styled.div<{ image: string }>`
   align-items: end;
 `;
 
-const Rank = styled.div`
+const Ranking = styled.div`
   border: 1px solid #bec7e1;
   background-color: #e9e9e9;
   padding: 58px 50px;
@@ -101,7 +101,7 @@ const OptionBox = styled.div`
 const Selection = styled.span`
   font-size: 24px;
   font-weight: 600;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   cursor: pointer;
 `;
 
