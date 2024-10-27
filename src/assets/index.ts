@@ -9,3 +9,6 @@ export { default as SearchIcon } from "./searchIcon.svg";
 export { default as LineOption } from "./lineOption.svg";
 export { default as PreviewImg } from "./preview.jpg";
 export { default as BaseProfile } from "./baseProfile.svg";
+export { default as Comment } from "./comment.svg";
+export { default as Heart } from "./heart.svg";
+export { default as PageArrow } from "./pageArrow.svg";
