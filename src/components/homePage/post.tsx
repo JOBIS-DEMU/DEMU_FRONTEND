@@ -1,63 +1,24 @@
-import { Bronze, Diamond, Silver } from "../../assets/rankIcons";
-import { BaseProfile, Comment, Heart, PreviewImg } from "../../assets";
+import { Comment, Heart } from "../../assets";
 import styled from "styled-components";
 
-const Post = () => {
-  const postData = [
-    {
-      name: "유재민",
-      rank: Silver,
-      profile: BaseProfile,
-      title: "ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ",
-      heartCnt: 3,
-      commentCnt: 3,
-      preview: PreviewImg,
-    },
-    {
-      name: "정승우",
-      rank: Bronze,
-      profile: BaseProfile,
-      title: "내가 프론트인 이유",
-      heartCnt: 10,
-      commentCnt: 10,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
-      preview: PreviewImg,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
-    },
-  ];
+interface PostProps {
+  name: string;
+  rank: string;
+  profile: string;
+  title: string;
+  heartCnt: number;
+  commentCnt: number;
+  preview?: string | undefined;
+}
+
+interface PostListProps {
+  posts: PostProps[];
+}
+
+const Post = ({ posts }: PostListProps) => {
   return (
     <Wrapper>
-      {postData.map(
+      {posts.map(
         (
           { name, rank, profile, title, heartCnt, commentCnt, preview },
           index
@@ -157,8 +118,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-left: 142px;
-  width: 1162px;
+
+  width: 100%;
 `;
 const NameBox = styled.div`
   display: flex;
