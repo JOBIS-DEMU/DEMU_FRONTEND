@@ -18,34 +18,29 @@ interface PostListProps {
 const Post = ({ posts }: PostListProps) => {
   return (
     <Wrapper>
-      {posts.map(
-        (
-          { name, rank, profile, title, heartCnt, commentCnt, preview },
-          index
-        ) => (
-          <ContextBox key={index}>
-            <PostBox>
-              <NameBox>
-                <Profile src={profile} />
-                <Filed>
-                  <Name>{name}</Name>
-                  <Rank src={rank} />
-                </Filed>
-              </NameBox>
-              <TitleBox>
-                <Title>{title}</Title>
-                <IconBox>
-                  <img src={Heart} />
-                  {heartCnt}
-                  <img src={Comment} />
-                  {commentCnt}
-                </IconBox>
-              </TitleBox>
-            </PostBox>
-            {preview ? <Preview src={preview} /> : null}
-          </ContextBox>
-        )
-      )}
+      {posts.map((post, index) => (
+        <ContextBox key={index}>
+          <PostBox>
+            <NameBox>
+              <Profile src={post.profile} />
+              <Filed>
+                <Name>{post.name}</Name>
+                <Rank src={post.rank} />
+              </Filed>
+            </NameBox>
+            <TitleBox>
+              <Title>{post.title}</Title>
+              <IconBox>
+                <img src={Heart} />
+                {post.heartCnt}
+                <img src={Comment} />
+                {post.commentCnt}
+              </IconBox>
+            </TitleBox>
+          </PostBox>
+          {post.preview ? <Preview src={post.preview} /> : null}
+        </ContextBox>
+      ))}
     </Wrapper>
   );
 };
