@@ -13,10 +13,10 @@ const MajorBottomSheet = ({
   value,
   onSelected
 }: BottomSheetProps) => {
-  const [isShowing, setShow] = useState<boolean>(false);
+  const [isShowing, setIsShowing] = useState<boolean>(false);
 
-  sheetController.open = () => setShow(true);
-  sheetController.close = () => setShow(false);
+  sheetController.open = () => setIsShowing(true);
+  sheetController.close = () => setIsShowing(false);
 
   return (
     <>
