@@ -1,6 +1,6 @@
 import MyPageLoginTab from "../components/myPage/myPageLoginTab";
-import { BaseProfile, PreviewImg } from "../assets";
-import { Diamond, Silver } from "../assets/rankIcons";
+import { BaseProfile } from "../assets";
+import { Diamond } from "../assets/rankIcons";
 import { HeaderMenu, ProgressBar, MyPost } from "../components/myPage";
 import styled from "styled-components";
 
@@ -13,13 +13,7 @@ const MyPage = () => {
           <ProgressBar value={77} />
           <MyPost />
         </Field>
-        <MyPageLoginTab
-          name="정승우"
-          major="frontend"
-          rank={Diamond}
-          info="안녕하세요"
-          profile={BaseProfile}
-        />
+        <MyPageLoginTab name="정승우" rank={Diamond} profile={BaseProfile} />
       </MainTab>
     </Wrapper>
   );

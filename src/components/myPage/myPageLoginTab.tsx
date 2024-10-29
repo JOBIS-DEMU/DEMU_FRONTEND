@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 interface loginTabProps {
   name: string;
-  major: string;
-  info: string;
+  major?: string;
+  info?: string;
   rank: string;
   profile: string;
 }
 
 const MyPageLoginTab = ({
   name,
-  major,
-  info,
+  major = "전공이 없습니다.",
+  info = "20자 이하의 자기소개를 작성해주세요!",
   rank,
   profile,
 }: loginTabProps) => {
@@ -42,7 +42,7 @@ const MyPageLoginTab = ({
         <Major>{major}</Major>
       </Info>
       <Footer>
-        <SelfInfo>{info}</SelfInfo>
+        <SelfInfo info={info}>{info}</SelfInfo>
         <Rank src={rank} />
       </Footer>
     </Wrapper>
@@ -82,12 +82,15 @@ const Rank = styled.img`
   height: 226px;
 `;
 
-const SelfInfo = styled.div`
+const SelfInfo = styled.div<{ info: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  color: #1f262c;
+  color: ${(props) =>
+    props.info.indexOf("20자 이하의 자기소개를 작성해주세요!") == -1
+      ? "#1f262c"
+      : "#98A4AF"};
   padding: 36px 74px;
   border-radius: 70px;
   width: 340px;
@@ -132,8 +135,9 @@ const Profile = styled.img`
 const Name = styled.span`
   font-size: 56px;
   font-weight: 600;
+  text-align: center;
 `;
 const Major = styled.span`
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 400px;
 `;
