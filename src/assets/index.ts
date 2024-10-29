@@ -15,3 +15,4 @@ export { default as PageArrow } from "./pageArrow.svg";
 export { default as MyPageLineOption } from "./myPageLineOption.svg";
 export { default as AddProfile } from "./addProfile.svg";
 export { default as SetIcon } from "./setIcon.svg";
+export { default as infoEditIcon } from "./infoEditIcon.svg";
