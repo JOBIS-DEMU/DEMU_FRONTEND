@@ -38,6 +38,7 @@ const ArrowBtn = styled.img`
 `;
 
 const PageNum = styled.span`
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
