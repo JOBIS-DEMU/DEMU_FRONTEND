@@ -13,3 +13,4 @@ export { default as Comment } from "./comment.svg";
 export { default as Heart } from "./heart.svg";
 export { default as PageArrow } from "./pageArrow.svg";
 export { default as myPageLineOption } from "./myPageLineOption.svg";
+export { default as MajorSelectDown } from "./majorSelectDown.svg";
