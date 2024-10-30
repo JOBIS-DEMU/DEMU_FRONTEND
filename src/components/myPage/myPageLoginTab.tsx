@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AddProfile, SetIcon } from "../../assets";
+import { AddProfile, infoEditIcon, SetIcon } from "../../assets";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -14,18 +14,33 @@ interface loginTabProps {
 const MyPageLoginTab = ({
   name,
   major = "전공이 없습니다.",
-  info = "20자 이하의 자기소개를 작성해주세요!",
   rank,
   profile,
 }: loginTabProps) => {
   const [file, setFile] = useState<File | null>(null);
+  const [edit, setEdit] = useState<boolean>(false);
+  const [info, setInfo] = useState<string>(
+    "20자 이하의 자기소개를 입력해주세요!"
+  );
   const navigate = useNavigate();
+
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (files && files.length === 1) {
       setFile(files[0]);
     }
   };
+  const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter") {
+      setEdit(false);
+    }
+  };
+  const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = event.target.value;
+    setInfo(value);
+  };
+  const isDefaultInfo = info === "20자 이하의 자기소개를 입력해주세요!";
+
   return (
     <Wrapper>
       <SetIconBox>
@@ -42,7 +57,20 @@ const MyPageLoginTab = ({
         <Major>{major}</Major>
       </Info>
       <Footer>
-        <SelfInfo info={info}>{info}</SelfInfo>
+        <SelfInfo info={info} isDefaultInfo={isDefaultInfo}>
+          {edit ? (
+            <EditInfo
+              onKeyDown={onKeyDown}
+              placeholder="20자 이하의 자기소개를 작성해주세요!"
+              onChange={onChange}
+            />
+          ) : (
+            <InfoBox>{info || "20자 이하의 자기소개를 작성해주세요!"}</InfoBox>
+          )}
+          {isDefaultInfo && !edit ? null : (
+            <InfoEdit src={infoEditIcon} onClick={() => setEdit(true)} />
+          )}
+        </SelfInfo>
         <Rank src={rank} />
       </Footer>
     </Wrapper>
@@ -50,6 +78,31 @@ const MyPageLoginTab = ({
 };
 
 export default MyPageLoginTab;
+
+const InfoBox = styled.div`
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const EditInfo = styled.textarea`
+  width: 90%;
+  font-size: 23px;
+  height: 70%;
+  border-radius: 70px;
+  white-space: normal;
+  padding: 20px 0px 20px 10px;
+  &::placeholder {
+    white-space: normal;
+  }
+`;
+
+const InfoEdit = styled.img`
+  cursor: pointer;
+  padding-right: 26px;
+`;
 
 const SetIconBox = styled.div`
   width: 500px;
@@ -82,16 +135,12 @@ const Rank = styled.img`
   height: 226px;
 `;
 
-const SelfInfo = styled.div<{ info: string }>`
+const SelfInfo = styled.div<{ info: string; isDefaultInfo: boolean }>`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background-color: #ffffff;
-  color: ${(props) =>
-    props.info.indexOf("20자 이하의 자기소개를 작성해주세요!") == -1
-      ? "#1f262c"
-      : "#98A4AF"};
-  padding: 36px 74px;
+  color: ${(props) => (props.isDefaultInfo ? "#98A4AF" : "#1f262c")};
   border-radius: 70px;
   width: 340px;
   height: 124px;
