@@ -20,7 +20,11 @@ const Login = (): JSX.Element => {
     return value.length >= 3 && value.length <= 20;
   };
   const getVaild = () => {
-    return !isFetching && email.length >= 3 && email.length <= 20 && password.length >= 8 && password.length <= 20
+    return !isFetching
+    && email.length >= 3
+    && email.length <= 20
+    && password.length >= 8
+    && password.length <= 20
   }
   const onClick = async () => {
     if (isFetching) {
@@ -39,7 +43,7 @@ const Login = (): JSX.Element => {
         alert('비밀번호가 틀렸습니다.');
         break;
       default:
-        alert('문제가 발생했습니다.');
+        alert('서비스 장애가 발생했습니다. 나중에 다시 접속해주세요.');
         window.location.reload();
     }
     setIsFetching(false);
