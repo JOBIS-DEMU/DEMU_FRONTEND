@@ -36,7 +36,7 @@ const HomePage = () => {
 
 export default HomePage;
 
-const Footer = styled.div`
+export const Footer = styled.footer`
   width: 100%;
   height: 160px;
   background-color: #e9e9e9;

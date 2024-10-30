@@ -37,22 +37,7 @@ const Post = () => {
       title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
       heartCnt: 300,
       commentCnt: 3923,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
+      preview: PreviewImg,
     },
   ];
   return (

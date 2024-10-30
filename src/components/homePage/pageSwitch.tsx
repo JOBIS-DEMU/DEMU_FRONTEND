@@ -56,7 +56,6 @@ const Field = styled.div`
   align-items: center;
   width: fit-content;
   padding: 20px 0px;
-  /* gap: 40px; */
 `;
 
 const Wrapper = styled.div`
