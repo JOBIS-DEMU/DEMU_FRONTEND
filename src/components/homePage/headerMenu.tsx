@@ -1,17 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { HeaderIcon, LineOption, SearchIcon } from "../../assets/index";
 import styled from "styled-components";
+import { useState } from "react";
 
 const HeaderMenu = () => {
+  const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearch(value);
+  };
 
   return (
     <Wrapper>
       <Container>
         <img src={HeaderIcon} />
         <InputBox>
-          <SearchInput placeholder="검색" />
-          <SearchImg src={SearchIcon} />
+          <SearchInput placeholder="검색" onChange={onChange} value={search} />
+          <SearchImg
+            src={SearchIcon}
+            onClick={() => {
+              navigate("/searchPage");
+            }}
+          />
         </InputBox>
       </Container>
       <Option>
