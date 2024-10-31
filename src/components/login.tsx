@@ -74,7 +74,7 @@ const Login = (): JSX.Element => {
       <Footer>
         <LoginOption>
           <BtnBox>
-            <Button disabled={!getVaild()} children="로그인" onClick={onClick} />
+            <Button disabled={!getVaild()} onClick={onClick}>로그인</Button>
           </BtnBox>
           <PsFind onClick={() => navigate("/pwFind")}>
             비밀번호 찾기 <img src={Arrow} />

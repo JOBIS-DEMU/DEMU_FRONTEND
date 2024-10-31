@@ -101,7 +101,7 @@ const SignUp = (): JSX.Element => {
       </LogoContainer>
       <Footer>
         <BtnBox>
-          <Button disabled={!getVaild()} children="회원가입" onClick={onClick} />
+          <Button disabled={!getVaild()} onClick={onClick}>회원가입</Button>
         </BtnBox>
         <NoAccount>
           계정이 있다면?
