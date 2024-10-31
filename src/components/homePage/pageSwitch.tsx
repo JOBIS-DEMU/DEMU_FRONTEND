@@ -47,6 +47,7 @@ const PageNum = styled.span`
   font-weight: 600;
   color: ${(props) => props.color};
   cursor: pointer;
+  width: 50px;
 `;
 
 const Field = styled.div`
@@ -55,7 +56,11 @@ const Field = styled.div`
   justify-content: center;
   align-items: center;
   width: fit-content;
+<<<<<<< HEAD
   padding: 20px 0px;
+=======
+  gap: 40px;
+>>>>>>> main
 `;
 
 const Wrapper = styled.div`
