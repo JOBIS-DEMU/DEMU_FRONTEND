@@ -3,16 +3,13 @@ import styled from "styled-components";
 import Major from "../../types/major";
 
 interface BottomSheetProps {
-  value: keyof typeof Major;
-  onSelected: (major: string)=>void;
+  value: Major;
+  onSelected: (major: Major) => void;
 }
 
 export const sheetController = { open: () => {}, close: () => {} };
 
-const MajorBottomSheet = ({
-  value,
-  onSelected
-}: BottomSheetProps) => {
+const MajorBottomSheet = ({ value, onSelected }: BottomSheetProps) => {
   const [isShowing, setIsShowing] = useState<boolean>(false);
 
   sheetController.open = () => setIsShowing(true);
@@ -20,17 +17,24 @@ const MajorBottomSheet = ({
 
   return (
     <>
-      {isShowing &&
-      <Background>
-        <MajorList>
-          {
-            Object.keys(Major).map((e, i)=><MajorItem key={i} selected={value === e} onClick={()=>onSelected(e)}>{e.toLowerCase()}</MajorItem>)
-          }
-        </MajorList>
-      </Background>}
+      {isShowing && (
+        <Background onClick={sheetController.close}>
+          <MajorList>
+            {Object.keys(Major).map((e, i) => (
+              <MajorItem
+                key={i}
+                selected={value === e}
+                onClick={() => onSelected(e as Major)}
+              >
+                {e.toLowerCase()}
+              </MajorItem>
+            ))}
+          </MajorList>
+        </Background>
+      )}
     </>
   );
-}
+};
 
 export default MajorBottomSheet;
 
@@ -53,12 +57,12 @@ const MajorList = styled.div`
   background-color: white;
 `;
 
-const MajorItem = styled.div<{selected?: boolean}>`
+const MajorItem = styled.div<{ selected?: boolean }>`
   width: 100vw;
   height: 50px;
   font-size: 24px;
   color: ${({ selected }) => (selected ? "#1B69FF" : "#707583")};
   padding-left: 100px;
   cursor: pointer;
-  border: 1px solid #E9E9E9;
+  border: 1px solid #e9e9e9;
 `;
