@@ -1,20 +1,92 @@
+import { useState } from "react";
 import { WritePageAddImage } from "../../assets";
 import styled from "styled-components";
 
 const WriteField = () => {
+  const [files, setFiles] = useState<File[]>([]);
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files: newFiles } = e.target;
+    if (newFiles) {
+      const filesArray = Array.from(newFiles);
+      const totalFiles = files.length + filesArray.length;
+      if (totalFiles <= 5) {
+        setFiles((prevFiles) => [...prevFiles, ...filesArray]);
+      }
+    }
+    e.target.value = "";
+  };
   return (
     <Wrapper>
       <ImageBox>
-        <AddImageBox>
+        <AddImageLabel htmlFor="file">
           <img src={WritePageAddImage} />
-          <ImgCnt>5/5</ImgCnt>
-        </AddImageBox>
+          <ImgCnt>{files.length}/5</ImgCnt>
+        </AddImageLabel>
+        <AddImageInput
+          type="file"
+          id="file"
+          onChange={files.length <= 5 ? onFileChange : undefined}
+          multiple
+        />
+        {files.map((i, index) => (
+          <Image src={URL.createObjectURL(i)} key={index} />
+        ))}
       </ImageBox>
+      <TitleBox>
+        <TitleInput placeholder="제목(25자 이하)"></TitleInput>
+      </TitleBox>
+      <ContentBox>
+        <Text placeholder="(3000자 이하) 본문에 내용을 추가해 주세요"></Text>
+      </ContentBox>
     </Wrapper>
   );
 };
 
 export default WriteField;
+
+const TitleInput = styled.input`
+  font-size: 48px;
+  border: none;
+  outline: none;
+  width: 100%;
+  &::placeholder {
+    color: #98a4af;
+  }
+`;
+
+const ContentBox = styled.div`
+  height: 100%;
+`;
+
+const Text = styled.textarea`
+  width: 648px;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  height: 100%;
+  &::placeholder {
+    color: #98a4af;
+  }
+`;
+
+const TitleBox = styled.div`
+  font-size: 48px;
+  color: #98a4af;
+  font-weight: 600;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e9e9e9;
+  width: 648px;
+`;
+
+const Image = styled.img`
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+`;
+
+const AddImageInput = styled.input`
+  display: none;
+`;
 
 const ImgCnt = styled.span`
   font-size: 14px;
@@ -22,7 +94,7 @@ const ImgCnt = styled.span`
   font-weight: 500;
 `;
 
-const AddImageBox = styled.div`
+const AddImageLabel = styled.label`
   width: 90px;
   height: 90px;
   border: 1px solid #98a4af;
@@ -32,11 +104,16 @@ const AddImageBox = styled.div`
   align-items: center;
   border-radius: 10px;
   gap: 10px;
+  cursor: pointer;
 `;
 
-const ImageBox = styled.div``;
+const ImageBox = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 
 const Wrapper = styled.div`
+  gap: 47px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
