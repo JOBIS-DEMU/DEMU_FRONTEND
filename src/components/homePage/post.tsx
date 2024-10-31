@@ -1,46 +1,6 @@
 import { Comment, Heart } from "../../assets";
 import styled from "styled-components";
 
-<<<<<<< HEAD
-const Post = () => {
-  const postData = [
-    {
-      name: "유재민",
-      rank: Silver,
-      profile: BaseProfile,
-      title: "ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ",
-      heartCnt: 3,
-      commentCnt: 3,
-      preview: PreviewImg,
-    },
-    {
-      name: "정승우",
-      rank: Bronze,
-      profile: BaseProfile,
-      title: "내가 프론트인 이유",
-      heartCnt: 10,
-      commentCnt: 10,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
-      preview: PreviewImg,
-    },
-    {
-      name: "홍길동",
-      rank: Diamond,
-      profile: BaseProfile,
-      title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
-      heartCnt: 300,
-      commentCnt: 3923,
-      preview: PreviewImg,
-    },
-  ];
-=======
 interface PostProps {
   name: string;
   rank: string;
@@ -56,7 +16,6 @@ interface PostListProps {
 }
 
 const Post = ({ posts }: PostListProps) => {
->>>>>>> main
   return (
     <Wrapper>
       {posts.map((post, index) => (
