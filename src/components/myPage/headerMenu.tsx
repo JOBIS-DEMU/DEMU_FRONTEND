@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { myPageLineOption, TitleLogo } from "../../assets";
+import { MyPageLineOption, TitleLogo } from "../../assets";
 import styled from "styled-components";
 
 interface headerMenuProps {
@@ -18,7 +18,7 @@ const HeaderMenu = ({ user }: headerMenuProps) => {
       </TitleBox>
       <Option>
         <Selection onClick={() => navigate("/home")}>홈</Selection>
-        <img src={myPageLineOption} />
+        <img src={MyPageLineOption} />
         <Selection onClick={() => navigate("/")}>로그아웃</Selection>
       </Option>
     </Wrapper>

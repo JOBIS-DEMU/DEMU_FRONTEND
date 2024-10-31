@@ -7,6 +7,7 @@ import {
   MyPage,
   WritePage,
   MyBlogPage,
+  SetPage,
 } from "../pages/index";
 
 const MainRouter = () => {
@@ -20,6 +21,7 @@ const MainRouter = () => {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/writePage" element={<WritePage />} />
         <Route path="/myBlog" element={<MyBlogPage />} />
+        <Route path="/setPage" element={<SetPage />} />
       </Routes>
     </BrowserRouter>
   );

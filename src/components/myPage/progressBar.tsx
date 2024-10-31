@@ -39,13 +39,15 @@ const Rank = styled.img`
 const Text = styled.div`
   font-size: 16px;
   font-weight: 600;
+  white-space: nowrap;
   & > strong {
     font-weight: 800;
   }
 `;
 
 const Field = styled.div`
-  width: fit-content;
+  width: 100%;
+
   background-color: #e9e9e9;
   padding: 26px 34px 26px 18px;
   border-radius: 15px;
@@ -61,7 +63,7 @@ const Wrapper = styled.div`
 `;
 
 const ExpBarBox = styled.div`
-  width: 900px;
+  width: 680px;
   height: 36px;
   border-radius: 18px;
   background-color: #ffffff;
