@@ -54,6 +54,7 @@ const MajorList = styled.div`
   height: 60vh;
   display: flex;
   flex-direction: column;
+
   background-color: white;
 `;
 
@@ -65,4 +66,6 @@ const MajorItem = styled.div<{ selected?: boolean }>`
   padding-left: 100px;
   cursor: pointer;
   border: 1px solid #e9e9e9;
+  display: flex;
+  align-items: center;
 `;
