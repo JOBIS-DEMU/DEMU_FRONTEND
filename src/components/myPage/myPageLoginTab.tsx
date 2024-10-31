@@ -65,9 +65,15 @@ const MyPageLoginTab = ({
               onChange={onChange}
             />
           ) : (
-            <InfoBox>{info || "20자 이하의 자기소개를 작성해주세요!"}</InfoBox>
+            <InfoBox
+              onClick={() => {
+                isDefaultInfo ? setEdit(true) : setEdit(false);
+              }}
+            >
+              {info || "20자 이하의 자기소개를 작성해주세요!"}
+            </InfoBox>
           )}
-          {isDefaultInfo && !edit ? null : (
+          {isDefaultInfo || edit ? null : (
             <InfoEdit src={infoEditIcon} onClick={() => setEdit(true)} />
           )}
         </SelfInfo>
@@ -85,6 +91,7 @@ const InfoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const EditInfo = styled.textarea`
