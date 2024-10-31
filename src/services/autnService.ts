@@ -27,8 +27,12 @@ class AuthService {
       switch (axiosError.response?.status) {
         case 400:
           return AuthResponse.INVAILD;
-        case 403:
-          return AuthResponse.BAD;
+        case 409:
+          const data = axiosError.response.data as Record<string, any>;
+          if (data.includes("nickname")) {
+            return AuthResponse.BAD
+          }
+          return AuthResponse.FORBIDDEN;
         default:
           return AuthResponse.ERROR;
       }
