@@ -39,7 +39,7 @@ const Input = ({
   return (
     <div>
       <Label>{label}</Label>
-      <InputContainer isValid={isValid}>
+      <InputContainer $isValid={isValid}>
         {hint && (
           <Hint>{hint}</Hint>
         )}
@@ -58,7 +58,7 @@ const Input = ({
           </ToggleIcon>
         )}
       </InputContainer>
-      <ErrorMessage isValid={isValid}>
+      <ErrorMessage $isValid={isValid}>
         <ErrorIcon src={cautionIcon} alt="Input caution" />
         {errorMessage}
       </ErrorMessage>
@@ -66,11 +66,11 @@ const Input = ({
   );
 };
 
-const InputContainer = styled.div<{ isValid: boolean }>`
+const InputContainer = styled.div<{ $isValid: boolean }>`
   display: flex;
   align-items: center;
   position: relative;
-  border: 2px solid ${({ isValid }) => (isValid ? "#707583" : "#ff0000")};
+  border: 2px solid ${({ $isValid }) => ($isValid ? "#707583" : "#ff0000")};
   border-radius: 14px;
   padding: 16px 10px;
   width: 100%;
@@ -105,12 +105,12 @@ const Label = styled.label`
   font-size: 13px;
 `;
 
-const ErrorMessage = styled.p<{ isValid: boolean }>`
+const ErrorMessage = styled.p<{ $isValid: boolean }>`
   color: #ff0000;
   font-size: 12px;
   margin-top: 5px;
   font-weight: 900;
-  visibility: ${({ isValid }) => (isValid ? "hidden" : "visible")};
+  visibility: ${({ $isValid }) => ($isValid ? "hidden" : "visible")};
 `;
 
 const ErrorIcon = styled.img`
