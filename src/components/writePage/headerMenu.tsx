@@ -27,12 +27,12 @@ const HeaderMenu = () => {
 export default HeaderMenu;
 
 const LogoImg = styled.img`
-  margin-left: 100px;
+  /* margin-left: 180px; */
 `;
 
 const SaveBtn = styled.button`
   background-color: #1b69ff;
-  width: 244px;
+  width: 240px;
   height: 80px;
   padding: 25px 84px;
   white-space: nowrap;
@@ -40,7 +40,6 @@ const SaveBtn = styled.button`
   border: none;
   color: #ffffff;
   cursor: pointer;
-  margin-right: 80px;
 `;
 
 const MajorText = styled.span`
@@ -62,6 +61,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 554px;
-  padding: 20px 0px;
+  gap: 500px;
+  padding: 20px 60px 20px 180px;
+  width: 100vw;
 `;
