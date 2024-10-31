@@ -5,44 +5,63 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import AuthService, { AuthResponse } from "../services/autnService";
 
 const SignUp = (): JSX.Element => {
   const navigate = useNavigate();
-  const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [nickName, setNickName] = useState<string>("");
-  const [chkPassword, setChkPassword] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [checkPassword, setCheckPassword] = useState<string>("");
+  const [isFetching, setIsFetching] = useState<boolean>(false);
   const onPassword = (value: string): boolean => {
     setPassword(value);
-    return true;
+    return value.length >= 8 && value.length <= 20;
   };
   const onChkPassword = (value: string): boolean => {
-    setChkPassword(value);
-    if (value === password) {
-      return true;
-    } else {
-      return false;
-    }
+    setCheckPassword(value);
+    return value === password;
   };
   const onEmail = (value: string): boolean => {
     setEmail(value);
-    if (value.indexOf("@dsm.hs.kr") != -1) {
-      return true;
-    } else {
-      return false;
-    }
+    return value.length >= 3 && value.length <= 20;
   };
-
   const onNickName = (value: string): boolean => {
-    setNickName(value);
-    if (value.length <= 20) {
-      return true;
-    } else {
-      return false;
-    }
+    setNickname(value);
+    return value.length >= 3 && value.length <= 10;
   };
-
-  const onClick = () => {};
+  const getVaild = () => {
+    return !isFetching
+    && email.length >= 3
+    && email.length <= 20
+    && password.length >= 8
+    && password.length <= 20
+    && checkPassword === password
+    && nickname.length >= 3
+    && nickname.length <= 10
+  }
+  const onClick = async () => {
+    if (isFetching) {
+      return;
+    }
+    setIsFetching(true);
+    const response: AuthService = await AuthService.signup(email, nickname, password);
+    switch (response) {
+      case AuthResponse.OK:
+        navigate("/home")
+        break;
+      case AuthResponse.BAD:
+        alert('이미 존재하는 닉네임입니다.');
+        break;
+      case AuthResponse.FORBIDDEN:
+        alert('이미 가입된 이메일입니다.');
+        break;
+      default:
+        alert('서비스 장애가 발생했습니다. 나중에 다시 접속해주세요.');
+        window.location.reload();
+    }
+    setIsFetching(false);
+  };
   return (
     <Wrapper>
       <LogoContainer>
@@ -54,37 +73,36 @@ const SignUp = (): JSX.Element => {
             label="이메일"
             onChange={onEmail}
             value={email}
-            errorMessage="유효하지 않은 이메일 입니다"
+            errorMessage="아이디는 3자 이상 20자 이하로 입력해주세요."
             hint="@dsm.hs.kr"
           />
           <Input
             label="닉네임"
             onChange={onNickName}
-            value={nickName}
-            errorMessage="이미 있는 닉네임 입니다"
-            placeholder="20자 이하의 닉네임을 입력해주세요"
+            value={nickname}
+            errorMessage="닉네임은 3자 이상 10자 이하로 입력해주세요."
+            placeholder="10자 이하의 닉네임을 입력해주세요"
           />
           <Input
             label="비밀번호"
             isPassword
             onChange={onPassword}
             value={password}
-            errorMessage="비밀번호가 올바르지 않습니다."
+            errorMessage="비밀번호는 8자 이상 20자 이하로 입력해주세요."
           />
           <Input
             label="비밀번호 확인"
             isPassword
             onChange={onChkPassword}
-            value={chkPassword}
+            value={checkPassword}
             errorMessage="비밀번호가 일치 하지 않습니다."
           />
         </InputContainer>
       </LogoContainer>
       <Footer>
         <BtnBox>
-          <Button children="회원가입" onClick={onClick} />
+          <Button disabled={!getVaild()} children="회원가입" onClick={onClick} />
         </BtnBox>
-
         <NoAccount>
           계정이 있다면?
           <GoSignUp onClick={() => navigate("/")}>로그인 하기</GoSignUp>
