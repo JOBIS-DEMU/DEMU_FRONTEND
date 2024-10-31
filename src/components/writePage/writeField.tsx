@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { WritePageAddImage } from "../../assets";
+import { WritePageAddImage, WritePageImageDel } from "../../assets";
 import styled from "styled-components";
 
 const WriteField = () => {
@@ -8,12 +8,12 @@ const WriteField = () => {
     const { files: newFiles } = e.target;
     if (newFiles) {
       const filesArray = Array.from(newFiles);
-      const totalFiles = files.length + filesArray.length;
-      if (totalFiles <= 5) {
-        setFiles((prevFiles) => [...prevFiles, ...filesArray]);
-      }
+      setFiles((prevFiles) => [...prevFiles, ...filesArray]);
     }
     e.target.value = "";
+  };
+  const onDelFile = () => {
+    setFiles((prevFiles) => prevFiles.slice(0, -1));
   };
   return (
     <Wrapper>
@@ -25,12 +25,15 @@ const WriteField = () => {
         <AddImageInput
           type="file"
           id="file"
-          onChange={files.length <= 5 ? onFileChange : undefined}
-          multiple
+          onChange={onFileChange}
+          disabled={files.length >= 5}
         />
         {files.map((i, index) => (
           <Image src={URL.createObjectURL(i)} key={index} />
         ))}
+        <ImgDelBox file={files} onClick={onDelFile}>
+          <ImgDel src={WritePageImageDel} />
+        </ImgDelBox>
       </ImageBox>
       <TitleBox>
         <TitleInput placeholder="제목(25자 이하)"></TitleInput>
@@ -43,6 +46,18 @@ const WriteField = () => {
 };
 
 export default WriteField;
+
+const ImgDel = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+const ImgDelBox = styled.div<{ file: File[] }>`
+  height: 100%;
+  display: ${(props) => (props.file.length !== 0 ? "flex" : "none")};
+  align-items: flex-end;
+  cursor: pointer;
+`;
 
 const TitleInput = styled.input`
   font-size: 48px;
