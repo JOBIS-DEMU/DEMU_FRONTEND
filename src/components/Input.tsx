@@ -1,4 +1,4 @@
-import { Caution, Invisible, Visible } from "@assets/index";
+import { Caution, Invisible, Visible } from "../assets/index";
 import React, { useState } from "react";
 import styled from "styled-components";
 

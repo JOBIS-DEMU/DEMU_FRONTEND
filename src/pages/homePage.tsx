@@ -1,4 +1,4 @@
-import { Bronze, Diamond, Silver } from "@assets/rankIcons";
+import { Bronze, Diamond, Silver } from "../assets/rankIcons";
 import {
   FilterTab,
   HeaderMenu,
@@ -8,7 +8,7 @@ import {
   Post,
 } from "../components/homePage";
 import styled from "styled-components";
-import { BaseProfile, PreviewImg } from "@assets/index";
+import { BaseProfile, PreviewImg } from "../assets";
 
 interface PostData {
   name: string;

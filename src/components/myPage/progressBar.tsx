@@ -1,4 +1,4 @@
-import { Bronze, Silver } from "@assets/rankIcons";
+import { Bronze, Silver } from "../../assets/rankIcons";
 import styled from "styled-components";
 
 interface ProgressBarProps {

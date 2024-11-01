@@ -1,5 +1,6 @@
+import { WritePageAddImage, WritePageImageDel } from "../../assets/index";
 import { useState } from "react";
-import { WritePageAddImage, WritePageImageDel } from "../../assets";
+
 import styled from "styled-components";
 
 const WriteField = () => {
@@ -36,10 +37,10 @@ const WriteField = () => {
         </ImgDelBox>
       </ImageBox>
       <TitleBox>
-        <TitleInput placeholder="제목(25자 이하)"></TitleInput>
+        <TitleInput placeholder="제목(25자 이하)" />
       </TitleBox>
       <ContentBox>
-        <Text placeholder="(3000자 이하) 본문에 내용을 추가해 주세요"></Text>
+        <Text placeholder="(3000자 이하) 본문에 내용을 추가해 주세요" />
       </ContentBox>
     </Wrapper>
   );

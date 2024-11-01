@@ -1,8 +1,8 @@
-import { MajorSelectDown, TitleLogo } from "@assets/index";
 import styled from "styled-components";
 import MajorBottomSheet, { sheetController } from "./MajorBottomSheet";
 import { useState } from "react";
 import Major from "../../types/major";
+import { MajorSelectDown, TitleLogo } from "../../assets";
 
 const HeaderMenu = () => {
   const [selectedMajor, setSelectedMajor] = useState<Major>(Major.NONE);

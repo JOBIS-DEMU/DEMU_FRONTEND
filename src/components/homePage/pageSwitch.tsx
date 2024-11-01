@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PageArrow } from "@assets/index";
+import { PageArrow } from "../../assets/index";
 import styled from "styled-components";
 
 const PageSwitch = () => {
