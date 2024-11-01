@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "./Input";
 import { useNavigate } from "react-router-dom";
-import { Arrow, LogoImg } from "../assets/index";
+import { Arrow, LogoImg } from "@assets/index";
+import Button from "./Button";
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();

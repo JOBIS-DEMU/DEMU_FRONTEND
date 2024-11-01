@@ -1,4 +1,4 @@
-import { Comment, Heart } from "../../assets";
+import { Comment, Heart } from "@assets/index";
 import styled from "styled-components";
 
 interface PostProps {

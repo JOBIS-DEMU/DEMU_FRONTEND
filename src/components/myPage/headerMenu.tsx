@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { MyPageLineOption, TitleLogo } from "../../assets";
+import { MyPageLineOption, TitleLogo } from "@assets/index";
 import styled from "styled-components";
 
 interface headerMenuProps {

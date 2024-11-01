@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { BaseProfile, PreviewImg } from "../../assets";
-import { Silver } from "../../assets/rankIcons";
+import { BaseProfile, PreviewImg } from "@assets/index";
+import { Silver } from "@assets/rankIcons";
 import styled from "styled-components";
-import { Post } from "../homePage";
+import { Post } from "components/homePage";
 
 const MyPost = () => {
   interface PostData {

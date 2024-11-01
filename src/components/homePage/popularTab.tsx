@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { BaseProfile, PreviewImg } from "../../assets";
+import { BaseProfile, PreviewImg } from "@assets/index";
 import styled from "styled-components";
 import { useState } from "react";
 

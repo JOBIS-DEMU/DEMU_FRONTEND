@@ -22,9 +22,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@/": ["./src/"]
+      "@assets/*": ["assets/*"]
     }
   },
   "include": ["src", "**/.ts", "*/.tsx"]

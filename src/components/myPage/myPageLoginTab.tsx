@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AddProfile, infoEditIcon, SetIcon } from "../../assets";
+import { AddProfile, infoEditIcon, SetIcon } from "@assets/index";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 

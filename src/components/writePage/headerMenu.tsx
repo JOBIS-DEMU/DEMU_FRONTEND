@@ -1,4 +1,4 @@
-import { MajorSelectDown, TitleLogo } from "../../assets";
+import { MajorSelectDown, TitleLogo } from "@assets/index";
 import styled from "styled-components";
 import MajorBottomSheet, { sheetController } from "./MajorBottomSheet";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import Major from "../../types/major";
 
 const HeaderMenu = () => {
   const [selectedMajor, setSelectedMajor] = useState<Major>(Major.NONE);
+  const [post, setPost] = useState<boolean>(false);
 
   const onSelected = (major: Major) => {
     setSelectedMajor(major);
@@ -13,12 +14,14 @@ const HeaderMenu = () => {
 
   return (
     <Wrapper>
-      <LogoImg src={TitleLogo} />
+      <img src={TitleLogo} />
       <MajorBox onClick={sheetController.open}>
         <MajorText>{selectedMajor}</MajorText>
         <img src={MajorSelectDown} />
       </MajorBox>
-      <SaveBtn>글 게시</SaveBtn>
+      <SaveBtn onClick={() => setPost(true)} post={post}>
+        {post ? "게시 완료" : "글 게시"}
+      </SaveBtn>
       <MajorBottomSheet onSelected={onSelected} value={selectedMajor} />
     </Wrapper>
   );
@@ -26,20 +29,18 @@ const HeaderMenu = () => {
 
 export default HeaderMenu;
 
-const LogoImg = styled.img`
-  /* margin-left: 180px; */
-`;
-
-const SaveBtn = styled.button`
-  background-color: #1b69ff;
+const SaveBtn = styled.button<{ post: boolean }>`
+  background-color: ${(props) => (props.post ? "#C9C9C9" : "#1b69ff")};
   width: 240px;
   height: 80px;
   padding: 25px 84px;
   white-space: nowrap;
   font-size: 24px;
   border: none;
-  color: #ffffff;
+  color: ${(props) => (props.post ? "#000000" : "#ffffff")};
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 `;
 
 const MajorText = styled.span`

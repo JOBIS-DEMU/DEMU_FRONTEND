@@ -1,4 +1,4 @@
-import Login from "../components/login";
+import { Login } from "components";
 import styled from "styled-components";
 
 const LoginPage = (): JSX.Element => {

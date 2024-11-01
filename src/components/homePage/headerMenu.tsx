@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { HeaderIcon, LineOption, SearchIcon } from "../../assets/index";
+import { HeaderIcon, LineOption, SearchIcon } from "@assets/index";
 import styled from "styled-components";
 
 const HeaderMenu = () => {
