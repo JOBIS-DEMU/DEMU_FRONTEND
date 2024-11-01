@@ -7,7 +7,7 @@ import Button from "./Button";
 
 const PwFind = () => {
   const [email, setEmail] = useState<string>("");
-  const onClick = () => {};
+  const onClick = () => {}; // button 컴포넌트 프롭스에 onclick이 있어 제작했습니다. 추후 api연동 시 변경될 예정
   const navigate = useNavigate();
   const onEmail = (value: string): boolean => {
     setEmail(value);
