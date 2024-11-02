@@ -32,7 +32,7 @@ const SignUp = (): JSX.Element => {
   };
   const getVaild = () => {
     return !isFetching
-    && email.length >= 3
+    && email.length >= 1
     && email.length <= 20
     && password.length >= 8
     && password.length <= 20
@@ -73,7 +73,7 @@ const SignUp = (): JSX.Element => {
             label="이메일"
             onChange={onEmail}
             value={email}
-            errorMessage="아이디는 3자 이상 20자 이하로 입력해주세요."
+            errorMessage="아이디는 1자 이상 20자 이하로 입력해주세요."
             hint="@dsm.hs.kr"
           />
           <Input
