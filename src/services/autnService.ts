@@ -29,8 +29,8 @@ class AuthService {
           return AuthResponse.INVAILD;
         case 409:
           const data = axiosError.response.data as Record<string, any>;
-          if (data.includes("nickname")) {
-            return AuthResponse.BAD
+          if (data.message.includes("nickname")) {
+            return AuthResponse.BAD;
           }
           return AuthResponse.FORBIDDEN;
         default:
@@ -43,7 +43,7 @@ class AuthService {
     try {
       const res: AxiosResponse = await api.post(
         '/public/signin', {
-          accountId: email,
+          accountId: email + '@dsm.hs.kr',
           password: password
         }
       );
