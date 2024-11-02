@@ -4,6 +4,8 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const WriteField = () => {
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [files, setFiles] = useState<File[]>([]);
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files: newFiles } = e.target;
@@ -15,6 +17,14 @@ const WriteField = () => {
   };
   const onDelFile = () => {
     setFiles((prevFiles) => prevFiles.slice(0, -1));
+  };
+  const onTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setTitle(value);
+  };
+  const onContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setContent(value);
   };
   return (
     <Wrapper>
@@ -37,10 +47,18 @@ const WriteField = () => {
         </ImgDelBox>
       </ImageBox>
       <TitleBox>
-        <TitleInput placeholder="제목(25자 이하)" />
+        <TitleInput
+          placeholder="제목(25자 이하)"
+          onChange={onTitle}
+          maxLength={25}
+        />
       </TitleBox>
       <ContentBox>
-        <Text placeholder="(3000자 이하) 본문에 내용을 추가해 주세요" />
+        <Text
+          placeholder="(3000자 이하) 본문에 내용을 추가해 주세요"
+          onChange={onContent}
+          maxLength={3000}
+        />
       </ContentBox>
     </Wrapper>
   );
