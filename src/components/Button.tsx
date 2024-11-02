@@ -31,7 +31,7 @@ const ButtonBase = styled.button`
   border: none;
   border-radius: 20px;
   padding: 10px 12px;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   background-color: #1B69FF;
   opacity: ${({ disabled }) => (disabled ? "0.75" : "1")};
 
