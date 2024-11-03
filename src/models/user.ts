@@ -8,11 +8,11 @@ class UserModel {
   grade: Grade;
   major: Major;
 
-  constructor(name: String, description?: String, point?: number, tier?: Grade, major?: Major) {
+  constructor(name: String, description?: String, point?: number, grade?: Grade, major?: Major) {
     this.name = name;
     this.description = description ?? "";
     this.point = point ?? 0;
-    this.grade = tier ?? Grade.BRONZE;
+    this.grade = grade ?? Grade.BRONZE;
     this.major = major ?? Major.NONE;
   }
 }
