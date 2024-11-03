@@ -1,9 +1,7 @@
 import styled from "styled-components";
-
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Input from "./Input";
-import Button from "./Button";
+import { Input, Button } from "../components";
 import { LogoImg } from "../assets";
 
 const SignUp = (): JSX.Element => {
