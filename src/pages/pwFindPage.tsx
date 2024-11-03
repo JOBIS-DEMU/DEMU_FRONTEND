@@ -1,15 +1,15 @@
+import { PwFind } from "../components";
 import styled from "styled-components";
-import { SignUp } from "../components";
 
-const SignUpPage = (): JSX.Element => {
+const PwFindPage = (): JSX.Element => {
   return (
     <Wrapper>
-      <SignUp />
+      <PwFind />
     </Wrapper>
   );
 };
 
-export default SignUpPage;
+export default PwFindPage;
 
 const Wrapper = styled.div`
   display: flex;

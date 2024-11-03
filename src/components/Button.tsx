@@ -6,11 +6,7 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-const Button = ({
-  children,
-  disabled = false,
-  onClick,
-}:ButtonProps) => {
+const Button = ({ children, disabled = false, onClick }: ButtonProps) => {
   return (
     <ButtonBase disabled={disabled} onClick={onClick}>
       {children}
