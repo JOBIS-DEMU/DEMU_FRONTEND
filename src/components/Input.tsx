@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
 import { Caution, Invisible, Visible } from "../assets/index";
->>>>>>> feature/31-create-writePage
+
 import { useState } from "react";
 import styled from "styled-components";
 
