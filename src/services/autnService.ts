@@ -15,7 +15,7 @@ class AuthService {
     try {
       const res: AxiosResponse = await api.post(
         '/public/signup', {
-          accountId: email,
+          accountId: email + '@dsm.hs.kr',
           nickname: name,
           password: password
         }
