@@ -58,7 +58,7 @@ const Input = ({
         )}
       </InputContainer>
       <ErrorMessage $isValid={isValid}>
-        <ErrorIcon src={cautionIcon} alt="Input caution" />
+        <ErrorIcon src={Caution} alt="Input caution" />
         {errorMessage}
       </ErrorMessage>
     </div>

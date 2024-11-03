@@ -1,28 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AddProfile, infoEditIcon, SetIcon } from "../../assets/index";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../../contexts/UserContext';
 
-interface loginTabProps {
-  name: string;
-  major?: string;
-  info?: string;
-  rank: string;
-  profile: string;
-}
-
-const MyPageLoginTab = ({
-  name,
-  major = "전공이 없습니다.",
-  rank,
-  profile,
-}: loginTabProps) => {
+const MyPageLoginTab = () => {
+  const { user, refreshUser } = useUser();
   const [file, setFile] = useState<File | null>(null);
   const [edit, setEdit] = useState<boolean>(false);
   const [info, setInfo] = useState<string>(
     "20자 이하의 자기소개를 입력해주세요!"
   );
   const navigate = useNavigate();
+
+  useEffect(() => {
+    refreshUser();
+  }, []);
+
+  if (!user) return null;
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -47,14 +42,14 @@ const MyPageLoginTab = ({
         <img src={SetIcon} onClick={() => navigate("/setPage")} />
       </SetIconBox>
       <AddProfileLabel htmlFor="file">
-        <Profile src={file ? URL.createObjectURL(file) : profile} />
+        <Profile src={file ? URL.createObjectURL(file) : "https://placeholder.pics/svg/300"} />
         <AddProfileImg src={AddProfile} />
       </AddProfileLabel>
       <AddProfileInput type="file" id="file" onChange={onFileChange} />
 
       <Info>
-        <Name>{name}</Name>
-        <Major>{major}</Major>
+        <Name>{user.name}</Name>
+        <Major>{user.major}</Major>
       </Info>
       <Footer>
         <SelfInfo info={info} isDefaultInfo={isDefaultInfo}>
@@ -77,7 +72,7 @@ const MyPageLoginTab = ({
             <InfoEdit src={infoEditIcon} onClick={() => setEdit(true)} />
           )}
         </SelfInfo>
-        <Rank src={rank} />
+        <Rank src={user.grade} />
       </Footer>
     </Wrapper>
   );
