@@ -1,9 +1,11 @@
 import styled from "styled-components";
-
-import { LogoImg } from "../assets/index";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Input, Button } from "../components";
+<<<<<<< HEAD
+=======
+import { LogoImg } from "../assets";
+>>>>>>> feature/31-create-writePage
 
 const SignUp = (): JSX.Element => {
   const navigate = useNavigate();

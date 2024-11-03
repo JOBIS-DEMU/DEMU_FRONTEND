@@ -1,5 +1,5 @@
-import SignUp from "../components/signUp";
 import styled from "styled-components";
+import { SignUp } from ".";
 
 const SignUpPage = (): JSX.Element => {
   return (

@@ -1,8 +1,10 @@
 import MyPageLoginTab from "../components/myPage/myPageLoginTab";
-import { BaseProfile } from "../assets";
+
 import { Diamond } from "../assets/rankIcons";
-import { HeaderMenu, ProgressBar, MyPost } from "../components/myPage";
+
 import styled from "styled-components";
+import { HeaderMenu, MyPost, ProgressBar } from "../components/myPage";
+import { BaseProfile } from "../assets";
 
 const MyPage = () => {
   return (

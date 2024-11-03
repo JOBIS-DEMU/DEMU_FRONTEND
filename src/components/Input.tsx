@@ -1,8 +1,9 @@
+<<<<<<< HEAD
+=======
+import { Caution, Invisible, Visible } from "../assets/index";
+>>>>>>> feature/31-create-writePage
 import { useState } from "react";
 import styled from "styled-components";
-import visibleIcon from "../assets/visible.svg";
-import invisibleIcon from "../assets/invisible.svg";
-import cautionIcon from "../assets/caution.svg";
 
 interface InputProps {
   label: string;
@@ -50,14 +51,14 @@ const Input = ({
         {isPassword && (
           <ToggleIcon onClick={togglePasswordVisibility}>
             <img
-              src={!isVisible ? invisibleIcon : visibleIcon}
+              src={!isVisible ? Invisible : Visible}
               alt="Toggle password visibility"
             />
           </ToggleIcon>
         )}
       </InputContainer>
       <ErrorMessage isValid={isValid}>
-        <ErrorIcon src={cautionIcon} alt="Input caution" />
+        <ErrorIcon src={Caution} alt="Input caution" />
         {errorMessage}
       </ErrorMessage>
     </div>
