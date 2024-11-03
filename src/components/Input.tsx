@@ -39,9 +39,7 @@ const Input = ({
     <div>
       <Label>{label}</Label>
       <InputContainer $isValid={isValid}>
-        {hint && (
-          <Hint>{hint}</Hint>
-        )}
+        {hint && <Hint>{hint}</Hint>}
         <StyledInput
           type={isPassword && !isVisible ? "password" : "text"}
           placeholder={placeholder}
@@ -58,7 +56,7 @@ const Input = ({
         )}
       </InputContainer>
       <ErrorMessage $isValid={isValid}>
-        <ErrorIcon src={cautionIcon} alt="Input caution" />
+        <ErrorIcon src={Caution} alt="Input caution" />
         {errorMessage}
       </ErrorMessage>
     </div>
