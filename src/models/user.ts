@@ -1,5 +1,5 @@
-import Grade from "src/types/grade";
-import Major from "src/types/major";
+import Grade from "../types/grade";
+import Major from "../types/major";
 
 class UserModel {
   name: String;
