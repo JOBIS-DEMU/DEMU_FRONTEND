@@ -12,13 +12,11 @@ const saveToken = (
 	data: {
 		access_token: string;
 		refresh_token?: string;
-		access_expires_at: string;
-		refresh_expires_at?: string
 	}
 ) => {
-	cookies.set('access_token', data.access_token, { path: '/', expires: new Date(data.access_expires_at) });
+	cookies.set('access_token', data.access_token);
 	if (data.refresh_token) {
-		cookies.set('refresh_token', data.refresh_token, { path: '/', expires: new Date(data.refresh_expires_at!) });
+		cookies.set('refresh_token', data.refresh_token);
 	}
 	api.defaults.headers.common['Authorization'] = data.access_token;
 };
