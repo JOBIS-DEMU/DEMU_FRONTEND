@@ -16,3 +16,6 @@ export { default as MyPageLineOption } from "./myPageLineOption.svg";
 export { default as AddProfile } from "./addProfile.svg";
 export { default as SetIcon } from "./setIcon.svg";
 export { default as infoEditIcon } from "./infoEditIcon.svg";
+export { default as MajorSelectDown } from "./majorSelectDown.svg";
+export { default as WritePageAddImage } from "./writePageAddImage.svg";
+export { default as WritePageImageDel } from "./wirtePageImageDel.svg";

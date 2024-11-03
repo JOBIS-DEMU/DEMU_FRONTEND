@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface ButtonProps {
@@ -7,11 +6,7 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-const Button = ({
-  children,
-  disabled = false,
-  onClick,
-}:ButtonProps) => {
+const Button = ({ children, disabled = false, onClick }: ButtonProps) => {
   return (
     <ButtonBase disabled={disabled} onClick={onClick}>
       {children}
@@ -33,7 +28,7 @@ const ButtonBase = styled.button`
   border-radius: 20px;
   padding: 10px 12px;
   cursor: pointer;
-  background-color: #1B69FF;
+  background-color: #1b69ff;
   opacity: ${({ disabled }) => (disabled ? "0.75" : "1")};
 
   &:active {
