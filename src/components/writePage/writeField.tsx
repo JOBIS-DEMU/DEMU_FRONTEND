@@ -51,6 +51,7 @@ const WriteField = () => {
           placeholder="제목(25자 이하)"
           onChange={onTitle}
           maxLength={25}
+          value={title}
         />
       </TitleBox>
       <ContentBox>
@@ -58,6 +59,7 @@ const WriteField = () => {
           placeholder="(3000자 이하) 본문에 내용을 추가해 주세요"
           onChange={onContent}
           maxLength={3000}
+          value={content}
         />
       </ContentBox>
     </Wrapper>
