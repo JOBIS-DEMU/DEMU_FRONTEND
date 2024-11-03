@@ -11,13 +11,15 @@ const api: AxiosInstance = axios.create({
 const saveToken = (
 	data: {
 		access_token: string;
-		refresh_token: string;
+		refresh_token?: string;
 		access_expires_at: string;
-		refresh_expires_at: string
+		refresh_expires_at?: string
 	}
 ) => {
 	cookies.set('access_token', data.access_token, { path: '/', expires: new Date(data.access_expires_at) });
-	cookies.set('refresh_token', data.refresh_token, { path: '/', expires: new Date(data.refresh_expires_at) });
+	if (data.refresh_token) {
+		cookies.set('refresh_token', data.refresh_token, { path: '/', expires: new Date(data.refresh_expires_at!) });
+	}
 	api.defaults.headers.common['Authorization'] = data.access_token;
 };
 
@@ -39,7 +41,7 @@ api.interceptors.response.use(
 			originalRequest._retry = true;
 			try {
 				const refreshToken = getRefreshToken();
-				const { data } = await api.post('/public/token/reissue', { token: refreshToken });
+				const { data } = await api.post('/public/token/reissue', { refreshToken: refreshToken });
 				saveToken(data);
 				return api(originalRequest);
 			} catch (refreshError) {
