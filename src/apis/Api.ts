@@ -23,7 +23,6 @@ const saveToken = (
 const removeToken = () => {
 	cookies.remove('access_token', { path: '/' });
 	cookies.remove('refresh_token', { path: '/' });
-	delete api.defaults.headers.common['Authorization'];
 };
 
 const getAuthToken = () => {
