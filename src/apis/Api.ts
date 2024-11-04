@@ -18,7 +18,6 @@ const saveToken = (
 	if (data.refresh_token) {
 		cookies.set('refresh_token', data.refresh_token);
 	}
-	api.defaults.headers.common['Authorization'] = data.access_token;
 };
 
 const removeToken = () => {
@@ -27,9 +26,26 @@ const removeToken = () => {
 	delete api.defaults.headers.common['Authorization'];
 };
 
+const getAuthToken = () => {
+	return cookies.get('access_token');
+}
+
 const getRefreshToken = () => {
 	return cookies.get('refresh_token');
 };
+
+api.interceptors.request.use(
+  (config) => {
+		const token = getAuthToken();
+		if (token) {
+			config.headers['Authorization'] = 'Bearer ' + token;
+		}
+    return config;
+  },
+  (error: AxiosError) => {
+    return Promise.reject(error);
+  }
+);
 
 api.interceptors.response.use(
 	(response) => response,
