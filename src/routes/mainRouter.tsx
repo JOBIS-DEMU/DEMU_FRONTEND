@@ -9,6 +9,7 @@ import {
   MyBlogPage,
   SetPage,
   SearchPage,
+  DetailPostPage,
 } from "../pages/index";
 
 const MainRouter = () => {
@@ -24,6 +25,7 @@ const MainRouter = () => {
         <Route path="/myBlog" element={<MyBlogPage />} />
         <Route path="/setPage" element={<SetPage />} />
         <Route path="/searchPage" element={<SearchPage />} />
+        <Route path="/detailPostPage/:id" element={<DetailPostPage />} />
       </Routes>
     </BrowserRouter>
   );

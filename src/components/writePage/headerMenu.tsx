@@ -3,10 +3,12 @@ import MajorBottomSheet, { sheetController } from "./MajorBottomSheet";
 import { useState } from "react";
 import Major from "../../types/major";
 import { MajorSelectDown, TitleLogo } from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 const HeaderMenu = () => {
   const [selectedMajor, setSelectedMajor] = useState<Major>(Major.NONE);
   const [post, setPost] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const onSelected = (major: Major) => {
     setSelectedMajor(major);
@@ -14,7 +16,12 @@ const HeaderMenu = () => {
 
   return (
     <Wrapper>
-      <img src={TitleLogo} />
+      <Logo
+        src={TitleLogo}
+        onClick={() => {
+          navigate("/home");
+        }}
+      />
       <MajorBox onClick={sheetController.open}>
         <MajorText>{selectedMajor.toLowerCase()}</MajorText>
         <img src={MajorSelectDown} />
@@ -28,6 +35,10 @@ const HeaderMenu = () => {
 };
 
 export default HeaderMenu;
+
+const Logo = styled.img`
+  cursor: pointer;
+`;
 
 const SaveBtn = styled.button<{ post: boolean }>`
   background-color: ${(props) => (props.post ? "#C9C9C9" : "#1b69ff")};

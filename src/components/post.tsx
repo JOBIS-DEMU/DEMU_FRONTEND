@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
-import { Comment, Heart } from "../../assets/index";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Comment, Heart } from "../assets/index";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
@@ -11,6 +11,7 @@ interface PostProps {
   heartCnt: number;
   commentCnt: number;
   preview?: string | undefined;
+  id: number;
 }
 
 interface PostListProps {
@@ -18,6 +19,7 @@ interface PostListProps {
 }
 
 const Post = ({ posts }: PostListProps) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState<string>("");
   useEffect(() => {
@@ -29,55 +31,37 @@ const Post = ({ posts }: PostListProps) => {
 
   const searchFilter = posts.filter((post) => post.title.includes(searchTerm));
 
+  const filteredPosts =
+    location.pathname === "/searchPage" ? searchFilter : posts;
+
   return (
     <Wrapper>
-      {location.pathname === "/searchPage"
-        ? searchFilter.map((post, index) => (
-            <ContextBox key={index}>
-              <PostBox>
-                <NameBox>
-                  <Profile src={post.profile} />
-                  <Field>
-                    <Name>{post.name}</Name>
-                    <Rank src={post.rank} />
-                  </Field>
-                </NameBox>
-                <TitleBox>
-                  <Title>{post.title}</Title>
-                  <IconBox>
-                    <img src={Heart} />
-                    {post.heartCnt}
-                    <img src={Comment} />
-                    {post.commentCnt}
-                  </IconBox>
-                </TitleBox>
-              </PostBox>
-              {post.preview ? <Preview src={post.preview} /> : null}
-            </ContextBox>
-          ))
-        : posts.map((post, index) => (
-            <ContextBox key={index}>
-              <PostBox>
-                <NameBox>
-                  <Profile src={post.profile} />
-                  <Field>
-                    <Name>{post.name}</Name>
-                    <Rank src={post.rank} />
-                  </Field>
-                </NameBox>
-                <TitleBox>
-                  <Title>{post.title}</Title>
-                  <IconBox>
-                    <img src={Heart} />
-                    {post.heartCnt}
-                    <img src={Comment} />
-                    {post.commentCnt}
-                  </IconBox>
-                </TitleBox>
-              </PostBox>
-              {post.preview ? <Preview src={post.preview} /> : null}
-            </ContextBox>
-          ))}
+      {filteredPosts.map((post, index) => (
+        <ContextBox
+          key={index}
+          onClick={() => navigate(`/detailPostPage/${post.id}`)}
+        >
+          <PostBox>
+            <NameBox>
+              <Profile src={post.profile} alt={`${post.name}의 프로필`} />
+              <Field>
+                <Name>{post.name}</Name>
+                <Rank src={post.rank} alt="랭크 아이콘" />
+              </Field>
+            </NameBox>
+            <TitleBox>
+              <Title>{post.title}</Title>
+              <IconBox>
+                <img src={Heart} alt="하트 아이콘" />
+                {post.heartCnt}
+                <img src={Comment} alt="댓글 아이콘" />
+                {post.commentCnt}
+              </IconBox>
+            </TitleBox>
+          </PostBox>
+          {post.preview && <Preview src={post.preview} alt="미리보기 이미지" />}
+        </ContextBox>
+      ))}
     </Wrapper>
   );
 };

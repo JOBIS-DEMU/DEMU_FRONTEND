@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PageArrow } from "../../assets/index";
+import { PageArrowRight, PageArrowLeft } from "../../assets/index";
 import styled from "styled-components";
 
 const PageSwitch = () => {
@@ -13,8 +13,17 @@ const PageSwitch = () => {
     setPageNums(newPageNums);
   }, [count]);
 
+  const pageDown = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    } else {
+      setCount(1);
+    }
+  };
+
   return (
     <Wrapper>
+      <ArrowBtn src={PageArrowLeft} onClick={pageDown} />
       <Field>
         {pageNums.map((i) => (
           <PageNum
@@ -26,7 +35,7 @@ const PageSwitch = () => {
           </PageNum>
         ))}
       </Field>
-      <ArrowBtn src={PageArrow} onClick={() => setCount(count + 1)} />
+      <ArrowBtn src={PageArrowRight} onClick={() => setCount(count + 1)} />
     </Wrapper>
   );
 };
