@@ -47,7 +47,12 @@ const HeaderMenu = () => {
   return (
     <Wrapper>
       <Container>
-        <img src={HeaderIcon} />
+        <Logo
+          src={HeaderIcon}
+          onClick={() => {
+            navigate("/home");
+          }}
+        />
         <InputBox>
           <SearchInput
             placeholder="검색"
@@ -70,6 +75,10 @@ const HeaderMenu = () => {
 };
 
 export default HeaderMenu;
+
+const Logo = styled.img`
+  cursor: pointer;
+`;
 
 const Selection = styled.span`
   cursor: pointer;
