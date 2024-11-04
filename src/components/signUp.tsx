@@ -22,7 +22,7 @@ const SignUp = (): JSX.Element => {
   };
   const onEmail = (value: string): boolean => {
     setEmail(value);
-    return value.length >= 3 && value.length <= 20;
+    return value.length >= 1 && value.length <= 20;
   };
   const onNickName = (value: string): boolean => {
     setNickname(value);

@@ -1,22 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AddProfile, infoEditIcon, SetIcon } from "../../assets/index";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../../contexts/UserContext';
+import { getRankIcon } from "../../types/grade";
+import { BaseProfile } from "../../assets/index";
+import UserService, { UserResponse } from "../../services/userService";
 
-interface loginTabProps {
-  name: string;
-  major?: string;
-  info?: string;
-  rank: string;
-  profile: string;
-}
-
-const MyPageLoginTab = ({
-  name,
-  major = "전공이 없습니다.",
-  rank,
-  profile,
-}: loginTabProps) => {
+const MyPageLoginTab = () => {
+  const { user, refreshUser } = useUser();
   const [file, setFile] = useState<File | null>(null);
   const [edit, setEdit] = useState<boolean>(false);
   const [info, setInfo] = useState<string>(
@@ -24,15 +16,39 @@ const MyPageLoginTab = ({
   );
   const navigate = useNavigate();
 
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    refreshUser();
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setInfo(user.description.toString());
+    }
+  }, [user]);
+
+  if (!user) return null;
+  
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (files && files.length === 1) {
+      const response: UserResponse = await UserService.setImage(files[0]);
+      if (response != UserResponse.OK) {
+        alert('잘못된 형식의 이미지입니다.');
+        return;
+      }
       setFile(files[0]);
+      refreshUser();
     }
   };
-  const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const onKeyDown = async (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
+      const response: UserResponse = await UserService.setDescription(info);
+      if (response == UserResponse.INVAILD) {
+        alert('잘못된 형식의 자기소개입니다.');
+        return;
+      }
       setEdit(false);
+      refreshUser();
     }
   };
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -41,43 +57,55 @@ const MyPageLoginTab = ({
   };
   const isDefaultInfo = info === "20자 이하의 자기소개를 입력해주세요!";
 
+  const handleInfoClick = () => {
+    if (isDefaultInfo) {
+      setEdit(true);
+    }
+  };
+
   return (
     <Wrapper>
       <SetIconBox>
         <img src={SetIcon} onClick={() => navigate("/setPage")} />
       </SetIconBox>
       <AddProfileLabel htmlFor="file">
-        <Profile src={file ? URL.createObjectURL(file) : profile} />
+        <Profile
+          src={
+            file 
+              ? URL.createObjectURL(file)
+              : user.image
+                ? user.image
+                : BaseProfile
+          } 
+        />
         <AddProfileImg src={AddProfile} />
       </AddProfileLabel>
       <AddProfileInput type="file" id="file" onChange={onFileChange} />
 
       <Info>
-        <Name>{name}</Name>
-        <Major>{major}</Major>
+        <Name>{user.name}</Name>
+        <Major>{user.major}</Major>
       </Info>
       <Footer>
-        <SelfInfo info={info} isDefaultInfo={isDefaultInfo}>
+        <SelfInfo $info={info} $isDefaultInfo={isDefaultInfo}>
           {edit ? (
             <EditInfo
               onKeyDown={onKeyDown}
               placeholder="20자 이하의 자기소개를 작성해주세요!"
               onChange={onChange}
+              maxLength={20}
+              value={info}
             />
           ) : (
-            <InfoBox
-              onClick={() => {
-                isDefaultInfo ? setEdit(true) : setEdit(false);
-              }}
-            >
-              {info || "20자 이하의 자기소개를 작성해주세요!"}
+            <InfoBox onClick={handleInfoClick}>
+              {info}
             </InfoBox>
           )}
           {isDefaultInfo || edit ? null : (
             <InfoEdit src={infoEditIcon} onClick={() => setEdit(true)} />
           )}
         </SelfInfo>
-        <Rank src={rank} />
+        <Rank src={getRankIcon(user.grade)} />
       </Footer>
     </Wrapper>
   );
@@ -142,12 +170,12 @@ const Rank = styled.img`
   height: 226px;
 `;
 
-const SelfInfo = styled.div<{ info: string; isDefaultInfo: boolean }>`
+const SelfInfo = styled.div<{ $info: string; $isDefaultInfo: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: #ffffff;
-  color: ${(props) => (props.isDefaultInfo ? "#98A4AF" : "#1f262c")};
+  color: ${(props) => (props.$isDefaultInfo ? "#98A4AF" : "#1f262c")};
   border-radius: 70px;
   width: 340px;
   height: 124px;
