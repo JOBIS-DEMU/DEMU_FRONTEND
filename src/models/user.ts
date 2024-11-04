@@ -1,21 +1,21 @@
-import Grade from "src/types/grade";
-import Major from "src/types/major";
+import Grade from "../types/grade";
+import Major from "../types/major";
 
 class UserModel {
-  email: String;
   name: String;
   description: String;
   point: number;
-  tier: Grade;
+  grade: Grade;
   major: Major;
+  image: string;
 
-  constructor(email: String, name: String, description?: String, point?: number, tier?: Grade, major?: Major) {
-    this.email = email;
+  constructor(name: String, description?: String, point?: number, grade?: Grade, major?: Major, image?: string) {
     this.name = name;
     this.description = description ?? "";
     this.point = point ?? 0;
-    this.tier = tier ?? Grade.BRONZE;
+    this.grade = grade ?? Grade.BRONZE;
     this.major = major ?? Major.NONE;
+    this.image = image ?? "";
   }
 }
 

@@ -31,7 +31,7 @@ const MyPost = () => {
       <TotalPostCnt>
         전체 글 <strong>{postData.length}</strong>
       </TotalPostCnt>
-      {postData.length !== 0 ? (
+      {postData.length > 0 ? (
         <PostBox>
           <Post posts={postData} />
         </PostBox>
