@@ -18,6 +18,7 @@ interface PostData {
   heartCnt: number;
   commentCnt: number;
   preview?: string | undefined;
+  id: number;
 }
 
 const HomePage = () => {
@@ -30,6 +31,7 @@ const HomePage = () => {
       heartCnt: 3,
       commentCnt: 3,
       preview: PreviewImg,
+      id: 1,
     },
     {
       name: "정승우",
@@ -38,6 +40,7 @@ const HomePage = () => {
       title: "내가 프론트인 이유",
       heartCnt: 10,
       commentCnt: 10,
+      id: 2,
     },
     {
       name: "홍길동",
@@ -46,6 +49,7 @@ const HomePage = () => {
       title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
       heartCnt: 300,
       commentCnt: 3923,
+      id: 3,
     },
     {
       name: "홍길동",
@@ -54,6 +58,7 @@ const HomePage = () => {
       title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
       heartCnt: 300,
       commentCnt: 3923,
+      id: 4,
     },
     {
       name: "홍길동",
@@ -62,6 +67,7 @@ const HomePage = () => {
       title: "내가 1살 때 부터 의적 일을 할 수 있었던 이유 199가지",
       heartCnt: 300,
       commentCnt: 3923,
+      id: 5,
     },
   ];
   return (
