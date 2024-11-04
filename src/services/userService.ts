@@ -9,6 +9,7 @@ enum UserResponse {
   INVAILD,  // 잘못된 요청 (Request 형식)
   FORBIDDEN,// 권한 없음 (자동 refresh 실패)
   NOTFOUND, // 찾을 수 없음
+  CONFLICT, // 이미 있음
   ERROR     // 서버에서 오류가 발생
 };
 
@@ -18,7 +19,9 @@ class UserService {
       const res: AxiosResponse = await api.get('/user/my-page');
       const infoData = res.data;
       const percent = await api.patch("/post/grade");
-      const data: UserModel = new UserModel(infoData.nickname, infoData.intro, percent.data.percent, infoData.data.grade as Grade, infoData.data.major as Major);
+      console.log(infoData.profile);
+      
+      const data: UserModel = new UserModel(infoData.nickname, infoData.intro, percent.data.percent, infoData.grade as Grade, infoData.major as Major, infoData.profile);
       handler(data);
       return UserResponse.OK;
     } catch (error) {
@@ -51,6 +54,8 @@ class UserService {
           return UserResponse.INVAILD;
         case 403:
           return UserResponse.FORBIDDEN;
+        case 409:
+          return UserResponse.CONFLICT;
         default:
           return UserResponse.ERROR;
       }
@@ -78,9 +83,12 @@ class UserService {
     }
   }
 
-  static async setImage(imageForm: FormData): Promise<UserResponse> {
+  static async setImage(image: File): Promise<UserResponse> {
     try {
-      await api.post('/user/profile', imageForm, {
+      const formData = new FormData();
+      formData.append('image', image);
+
+      await api.patch('/user/profile', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
