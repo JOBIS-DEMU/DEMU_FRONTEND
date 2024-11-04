@@ -6,3 +6,4 @@ export { default as SignUpPage } from "./signUpPage";
 export { default as WritePage } from "./writePage";
 export { default as MyBlogPage } from "./myBlogPage";
 export { default as SetPage } from "./setPage";
+export { default as SearchPage } from "./searchPage";

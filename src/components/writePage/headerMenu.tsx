@@ -16,7 +16,7 @@ const HeaderMenu = () => {
     <Wrapper>
       <img src={TitleLogo} />
       <MajorBox onClick={sheetController.open}>
-        <MajorText>{selectedMajor}</MajorText>
+        <MajorText>{selectedMajor.toLowerCase()}</MajorText>
         <img src={MajorSelectDown} />
       </MajorBox>
       <SaveBtn onClick={() => setPost(true)} post={post}>

@@ -1,5 +1,7 @@
+import { useLocation } from "react-router-dom";
 import { Comment, Heart } from "../../assets/index";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 interface PostProps {
   name: string;
@@ -16,31 +18,66 @@ interface PostListProps {
 }
 
 const Post = ({ posts }: PostListProps) => {
+  const location = useLocation();
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  useEffect(() => {
+    const term = localStorage.getItem("searchValue");
+    if (term) {
+      setSearchTerm(term);
+    }
+  }, []);
+
+  const searchFilter = posts.filter((post) => post.title.includes(searchTerm));
+
   return (
     <Wrapper>
-      {posts.map((post, index) => (
-        <ContextBox key={index}>
-          <PostBox>
-            <NameBox>
-              <Profile src={post.profile} />
-              <Filed>
-                <Name>{post.name}</Name>
-                <Rank src={post.rank} />
-              </Filed>
-            </NameBox>
-            <TitleBox>
-              <Title>{post.title}</Title>
-              <IconBox>
-                <img src={Heart} />
-                {post.heartCnt}
-                <img src={Comment} />
-                {post.commentCnt}
-              </IconBox>
-            </TitleBox>
-          </PostBox>
-          {post.preview ? <Preview src={post.preview} /> : null}
-        </ContextBox>
-      ))}
+      {location.pathname === "/searchPage"
+        ? searchFilter.map((post, index) => (
+            <ContextBox key={index}>
+              <PostBox>
+                <NameBox>
+                  <Profile src={post.profile} />
+                  <Field>
+                    <Name>{post.name}</Name>
+                    <Rank src={post.rank} />
+                  </Field>
+                </NameBox>
+                <TitleBox>
+                  <Title>{post.title}</Title>
+                  <IconBox>
+                    <img src={Heart} />
+                    {post.heartCnt}
+                    <img src={Comment} />
+                    {post.commentCnt}
+                  </IconBox>
+                </TitleBox>
+              </PostBox>
+              {post.preview ? <Preview src={post.preview} /> : null}
+            </ContextBox>
+          ))
+        : posts.map((post, index) => (
+            <ContextBox key={index}>
+              <PostBox>
+                <NameBox>
+                  <Profile src={post.profile} />
+                  <Field>
+                    <Name>{post.name}</Name>
+                    <Rank src={post.rank} />
+                  </Field>
+                </NameBox>
+                <TitleBox>
+                  <Title>{post.title}</Title>
+                  <IconBox>
+                    <img src={Heart} />
+                    {post.heartCnt}
+                    <img src={Comment} />
+                    {post.commentCnt}
+                  </IconBox>
+                </TitleBox>
+              </PostBox>
+              {post.preview ? <Preview src={post.preview} /> : null}
+            </ContextBox>
+          ))}
     </Wrapper>
   );
 };
@@ -103,7 +140,7 @@ const Rank = styled.img`
   height: 34px;
 `;
 
-const Filed = styled.div`
+const Field = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
