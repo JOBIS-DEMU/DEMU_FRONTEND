@@ -20,3 +20,5 @@ export { default as infoEditIcon } from "./infoEditIcon.svg";
 export { default as MajorSelectDown } from "./majorSelectDown.svg";
 export { default as WritePageAddImage } from "./writePageAddImage.svg";
 export { default as WritePageImageDel } from "./wirtePageImageDel.svg";
+export { default as SetPost } from "./setPost.svg";
+export { default as CommentSend } from "./commentSend.svg";
