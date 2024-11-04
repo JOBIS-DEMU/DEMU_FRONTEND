@@ -48,7 +48,6 @@ const HeaderMenu = () => {
             onChange={onChange}
             value={search}
             onKeyDown={handleEnter}
-            defaultValue={search}
           />
           <SearchImg src={SearchIcon} onClick={clickSearch} />
         </InputBox>

@@ -1,6 +1,6 @@
 import { HeaderMenu, PageSwitch, Post } from "../components/homePage";
 import styled from "styled-components";
-import { Footer } from "./homePage";
+import { Footer, FooterDiv } from "./homePage";
 import { Bronze, Silver } from "../assets/rankIcons";
 import { BaseProfile, PreviewImg } from "../assets";
 interface PostData {
@@ -40,9 +40,11 @@ const SearchPage = () => {
         <PostBox>
           <Post posts={postData} />
         </PostBox>
-        <PageSwitch />
       </Field>
-      <Footer></Footer>
+      <Footer>
+        <PageSwitch />
+        <FooterDiv></FooterDiv>
+      </Footer>
     </Wrapper>
   );
 };
@@ -68,4 +70,5 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 80px;
+  height: 100vh;
 `;
