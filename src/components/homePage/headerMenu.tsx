@@ -1,15 +1,41 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { HeaderIcon, LineOption, SearchIcon } from "../../assets";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const HeaderMenu = () => {
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === "/searchPage") {
+      const saved = localStorage.getItem("searchValue");
+      if (saved) {
+        setSearch(saved);
+      }
+    } else {
+      localStorage.removeItem("searchValue");
+    }
+  }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearch(value);
+    localStorage.setItem("searchValue", value);
+  };
+
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (search.trim() !== "") {
+        navigate("/searchPage");
+      }
+    }
+  };
+
+  const clickSearch = () => {
+    if (search.trim() !== "") {
+      navigate("/searchPage");
+    }
   };
 
   return (
@@ -17,13 +43,14 @@ const HeaderMenu = () => {
       <Container>
         <img src={HeaderIcon} />
         <InputBox>
-          <SearchInput placeholder="검색" onChange={onChange} value={search} />
-          <SearchImg
-            src={SearchIcon}
-            onClick={() => {
-              navigate("/searchPage");
-            }}
+          <SearchInput
+            placeholder="검색"
+            onChange={onChange}
+            value={search}
+            onKeyDown={handleEnter}
+            defaultValue={search}
           />
+          <SearchImg src={SearchIcon} onClick={clickSearch} />
         </InputBox>
       </Container>
       <Option>
