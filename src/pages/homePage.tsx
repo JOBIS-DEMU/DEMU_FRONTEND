@@ -9,6 +9,7 @@ import {
 } from "../components/homePage";
 import styled from "styled-components";
 import { BaseProfile, PreviewImg } from "../assets";
+import { useUser } from "../contexts/UserContext";
 
 interface PostData {
   name: string;
@@ -21,6 +22,8 @@ interface PostData {
 }
 
 const HomePage = () => {
+  const { user } = useUser();
+  
   const postData: PostData[] = [
     {
       name: "유재민",
@@ -64,6 +67,7 @@ const HomePage = () => {
       commentCnt: 3923,
     },
   ];
+
   return (
     <Wrapper>
       <Field>
@@ -72,13 +76,7 @@ const HomePage = () => {
         <FilterTab />
         <Main>
           <Post posts={postData} />
-          <LoginTab
-            name="정승우"
-            major="frontend"
-            info="살려주세요"
-            rank={Diamond}
-            profile={BaseProfile}
-          />
+          {user && <LoginTab user={user} />}
         </Main>
         <PageSwitch />
       </Field>

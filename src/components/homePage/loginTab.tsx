@@ -1,37 +1,32 @@
+import UserModel from "../../models/user";
+import { getRankIcon } from "../../types/grade";
+import { BaseProfile } from "../../assets";
 import styled from "styled-components";
 
-interface loginTabProps {
-  name: string;
-  major: string;
-  info: string;
-  rank: string;
-  profile: string;
+interface LoginTabProps {
+  user: UserModel;
 }
 
-const LoginTab = ({ name, major, info, rank, profile }: loginTabProps) => {
+const LoginTab = ({ user }: LoginTabProps) => {
   return (
     <Wrapper>
-      <Profile src={profile} />
-      <Info>
-        <Name>{name}</Name>
-        <Major>{major}</Major>
-      </Info>
-      <Footer>
-        <SelfInfo>{info}</SelfInfo>
-        <Rank src={rank} />
-      </Footer>
+      <Profile src={BaseProfile} />
+      <Name>{user.name}</Name>
+      <Major>{user.major}</Major>
+      <Info>{user.description || "자기소개를 입력해주세요"}</Info>
+      <RankImg src={getRankIcon(user.grade)} />
     </Wrapper>
   );
 };
 
 export default LoginTab;
 
-const Rank = styled.img`
+const RankImg = styled.img`
   width: 216px;
   height: 226px;
 `;
 
-const SelfInfo = styled.div`
+const Info = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,18 +38,6 @@ const SelfInfo = styled.div`
   height: 144px;
   font-size: 23px;
   font-weight: 600;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const Wrapper = styled.div`
