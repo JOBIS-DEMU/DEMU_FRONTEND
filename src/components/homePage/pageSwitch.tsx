@@ -38,6 +38,7 @@ const ArrowBtn = styled.img`
 `;
 
 const PageNum = styled.span`
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +56,7 @@ const Field = styled.div`
   justify-content: center;
   align-items: center;
   width: fit-content;
-  gap: 40px;
+  padding: 20px 0px;
 `;
 
 const Wrapper = styled.div`

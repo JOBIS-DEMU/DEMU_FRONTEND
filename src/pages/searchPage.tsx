@@ -1,6 +1,6 @@
 import { HeaderMenu, PageSwitch, Post } from "../components/homePage";
 import styled from "styled-components";
-import { Footer } from "./homePage";
+import { Footer, FooterDiv } from "./homePage";
 import { Bronze, Silver } from "../assets/rankIcons";
 import { BaseProfile, PreviewImg } from "../assets";
 interface PostData {
@@ -13,7 +13,7 @@ interface PostData {
   preview?: string | undefined;
 }
 
-const MyBlogPage = () => {
+const SearchPage = () => {
   const postData: PostData[] = [
     {
       name: "유재민",
@@ -40,14 +40,16 @@ const MyBlogPage = () => {
         <PostBox>
           <Post posts={postData} />
         </PostBox>
-        <PageSwitch />
       </Field>
-      <Footer></Footer>
+      <Footer>
+        <PageSwitch />
+        <FooterDiv></FooterDiv>
+      </Footer>
     </Wrapper>
   );
 };
 
-export default MyBlogPage;
+export default SearchPage;
 
 const PostBox = styled.div`
   display: flex;
@@ -68,4 +70,5 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 80px;
+  height: 100vh;
 `;
