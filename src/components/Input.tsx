@@ -39,9 +39,7 @@ const Input = ({
     <div>
       <Label>{label}</Label>
       <InputContainer $isValid={isValid}>
-        {hint && (
-          <Hint>{hint}</Hint>
-        )}
+        {hint && <Hint>{hint}</Hint>}
         <StyledInput
           type={isPassword && !isVisible ? "password" : "text"}
           placeholder={placeholder}
