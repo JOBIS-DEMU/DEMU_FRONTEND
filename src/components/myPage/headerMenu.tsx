@@ -59,7 +59,7 @@ const TitleBox = styled.div`
 
 const Hello = styled.div`
   font-size: 32px;
-  width: 300px;
+  width: 320px;
   font-weight: 500;
   & > strong {
     font-weight: 600;
