@@ -28,6 +28,9 @@ const HeaderMenu = () => {
     if (e.key === "Enter") {
       if (search.trim() !== "") {
         navigate("/searchPage");
+        if (window.location.pathname === "/searchPage") {
+          window.location.reload();
+        }
       }
     }
   };
@@ -35,6 +38,9 @@ const HeaderMenu = () => {
   const clickSearch = () => {
     if (search.trim() !== "") {
       navigate("/searchPage");
+      if (window.location.pathname === "/searchPage") {
+        window.location.reload();
+      }
     }
   };
 
