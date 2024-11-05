@@ -24,3 +24,5 @@ export { default as Logout } from "./logout.svg";
 export { default as SetNickname } from "./setNickname.svg";
 export { default as SetPassword } from "./setPassword.svg";
 export { default as SetMajor } from "./setMajor.svg";
+export { default as CommentSend } from "./commentSend.svg";
+export { default as SetPost } from "./setPost.svg";
