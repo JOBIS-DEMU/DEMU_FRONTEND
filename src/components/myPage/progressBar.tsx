@@ -1,23 +1,43 @@
-import { Bronze, Silver } from "../../assets/rankIcons";
+import { useUser } from "../../contexts/UserContext";
+import { getRankIcon } from "../../types/grade";
+import Grade from "../../types/grade";
 import styled from "styled-components";
 
-interface ProgressBarProps {
-  value: number;
-}
+const ProgressBar = () => {
+  const { user } = useUser();
+  if (!user) return null;
+  const value = user.point;
+  
+  const getNextGrade = (gradeStr: string) => {
+    const grade = gradeStr.toLowerCase() as Grade;
+    switch(grade) {
+      case Grade.BRONZE:
+        return Grade.SILVER;
+      case Grade.SILVER:
+        return Grade.GOLD;
+      case Grade.GOLD:
+        return Grade.PLATINUM;
+      case Grade.PLATINUM:
+        return Grade.DIAMOND;
+      default:
+        return Grade.DIAMOND;
+    }
+  };
 
-const ProgressBar = ({ value }: ProgressBarProps) => {
+  const nextGrade = getNextGrade(user.grade);
+  
   return (
     <Wrapper>
       <Field>
         <Text>
-          <strong>실버</strong> 등급 까지 {100 - value}% 남았어요
+          <strong>{nextGrade.toLowerCase()}</strong> 등급 까지 {100 - value}% 남았어요
         </Text>
         <ExpBox>
-          <Rank src={Bronze} />
+          <Rank src={getRankIcon(user.grade)} />
           <ExpBarBox>
             <ExpBar value={value}></ExpBar>
           </ExpBarBox>
-          <Rank src={Silver} />
+          <Rank src={getRankIcon(nextGrade)} />
         </ExpBox>
       </Field>
     </Wrapper>

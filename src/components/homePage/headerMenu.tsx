@@ -1,12 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { HeaderIcon, LineOption, SearchIcon } from "../../assets";
 import styled from "styled-components";
+import { useUser } from "../../contexts/UserContext";
 import { useEffect, useState } from "react";
 
 const HeaderMenu = () => {
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
+  const { user } = useUser();
   const location = useLocation();
+
   useEffect(() => {
     if (location.pathname === "/searchPage") {
       const saved = localStorage.getItem("searchValue");
@@ -68,7 +71,11 @@ const HeaderMenu = () => {
         <img src={LineOption} />
         <Selection onClick={() => navigate("/myPage")}>마이페이지</Selection>
         <img src={LineOption} />
-        <Selection onClick={() => navigate("/")}>로그인</Selection>
+        {user ? (
+          <Selection onClick={() => navigate("/")}>로그아웃</Selection>
+        ) : (
+          <Selection onClick={() => navigate("/")}>로그인</Selection>
+        )}
       </Option>
     </Wrapper>
   );

@@ -1,25 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { MyPageLineOption, TitleLogo } from "../../assets/index";
+import UserModel from "../../models/user";
+import { removeToken } from "../../apis/Api";
 import styled from "styled-components";
 
-interface headerMenuProps {
-  user: string;
+interface HeaderMenuProps {
+  user: UserModel;
 }
 
-const HeaderMenu = ({ user }: headerMenuProps) => {
+const HeaderMenu = ({ user }: HeaderMenuProps) => {
   const navigate = useNavigate();
+  const logout = () => {
+    removeToken();
+    navigate("/");
+  }
+
   return (
     <Wrapper>
       <TitleBox>
         <img src={TitleLogo} />
         <Hello>
-          안녕하세요! <strong>{user}</strong>님
+          안녕하세요! <strong>{user.name}</strong>님
         </Hello>
       </TitleBox>
       <Option>
         <Selection onClick={() => navigate("/home")}>홈</Selection>
         <img src={MyPageLineOption} />
-        <Selection onClick={() => navigate("/")}>로그아웃</Selection>
+        <Selection onClick={logout}>로그아웃</Selection>
       </Option>
     </Wrapper>
   );
@@ -59,7 +66,7 @@ const TitleBox = styled.div`
 
 const Hello = styled.div`
   font-size: 32px;
-  width: 300px;
+  width: 320px;
   font-weight: 500;
   & > strong {
     font-weight: 600;

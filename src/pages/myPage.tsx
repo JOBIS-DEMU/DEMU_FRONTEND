@@ -1,25 +1,32 @@
 import MyPageLoginTab from "../components/myPage/myPageLoginTab";
-
-import { Diamond } from "../assets/rankIcons";
-
 import styled from "styled-components";
 import { HeaderMenu, MyPost, ProgressBar } from "../components/myPage";
-import { BaseProfile } from "../assets";
+import { useUser } from "../contexts/UserContext";
+import { useEffect } from "react";
 
 const MyPage = () => {
+  const { user, refreshUser } = useUser();
+  
+  useEffect(() => {
+    refreshUser();
+  }, []);
+  
+  if (!user) return null;
+
   return (
     <Wrapper>
-      <HeaderMenu user={"홍길동"} />
+      <HeaderMenu user={user} />
       <MainTab>
         <Field>
-          <ProgressBar value={77} />
+          <ProgressBar />
           <MyPost />
         </Field>
-        <MyPageLoginTab name="정승우" rank={Diamond} profile={BaseProfile} />
+        <MyPageLoginTab />
       </MainTab>
     </Wrapper>
   );
 };
+
 export default MyPage;
 
 const Field = styled.div`
